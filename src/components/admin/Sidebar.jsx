@@ -1,18 +1,12 @@
-import React from 'react';
 import { 
-  Users, 
-  LayoutDashboard, 
-  Settings, 
   BarChart3, 
   LogOut,
   GraduationCap
 } from 'lucide-react';
 import itiLogo from '../../assets/iti-logo.png';
 
-const Sidebar = ({ activeTab = 'inscriptions' }) => {
+const Sidebar = ({ activeTab = 'formations' }) => {
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/admin' },
-    { id: 'inscriptions', label: 'Inscriptions', icon: Users, path: '/admin' },
     { id: 'formations', label: 'Formations', icon: GraduationCap, path: '/admin/formations' },
     { id: 'analytics', label: 'Analytiques', icon: BarChart3, path: '/admin/analytics' },
   ];

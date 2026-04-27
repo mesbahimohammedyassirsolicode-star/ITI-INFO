@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -13,7 +13,6 @@ const FormationDetails = lazy(() => import('./pages/FormationDetails'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Inscription = lazy(() => import('./pages/Inscription'));
 const Login = lazy(() => import('./pages/Login'));
-const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const AdminFormations = lazy(() => import('./pages/AdminFormations'));
 const AdminAnalytics = lazy(() => import('./pages/AdminAnalytics'));
 
@@ -53,7 +52,7 @@ function AppContent() {
             {/* Admin Protected Routes */}
             <Route path="/admin" element={
               <ProtectedRoute>
-                <AdminDashboard />
+                <Navigate to="/admin/formations" replace />
               </ProtectedRoute>
             } />
             <Route path="/admin/formations" element={

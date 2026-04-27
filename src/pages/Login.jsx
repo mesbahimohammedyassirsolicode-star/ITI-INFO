@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../services/api';
 
@@ -16,7 +16,7 @@ const Login = () => {
 
         try {
             await authService.login({ email, password });
-            navigate('/admin');
+            navigate('/admin/formations');
         } catch (err) {
             console.error(err);
             setError(err.message || 'Une erreur est survenue lors de la connexion.');
