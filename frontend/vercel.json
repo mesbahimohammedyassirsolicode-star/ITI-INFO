@@ -1,1 +1,8 @@
-// Moved to root directory
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
