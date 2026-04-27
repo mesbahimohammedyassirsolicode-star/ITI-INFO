@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fadeUp } from '../animations/motionVariants';
 import MagneticHover from './MagneticHover';
+import itiLogo from '../assets/iti-logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,10 +41,12 @@ const Navbar = () => {
       variants={fadeUp}
     >
       <nav className="flex justify-between items-center w-full h-20 px-8 max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-xl bg-primary text-white flex items-center justify-center font-black text-sm shadow-md">
-            ITI
-          </div>
+        <Link to="/" className="flex items-center gap-4 shrink-0">
+          <img
+            src={itiLogo}
+            alt="Logo Institut ITI"
+            className="h-12 w-auto object-contain rounded-md"
+          />
           <span className="text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">Institut ITI</span>
         </Link>
 

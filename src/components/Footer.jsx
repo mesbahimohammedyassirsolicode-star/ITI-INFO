@@ -1,5 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import itiLogo from '../assets/iti-logo.png';
 
 const Footer = () => {
   return (
@@ -7,9 +7,11 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-16 px-8 max-w-7xl mx-auto w-full">
         <div>
           <div className="flex items-center gap-3 mb-6">
-            <div className="h-12 w-12 rounded-xl bg-white text-blue-900 flex items-center justify-center font-black text-sm">
-              ITI
-            </div>
+            <img
+              src={itiLogo}
+              alt="Logo Institut ITI"
+              className="h-12 w-auto object-contain rounded-md"
+            />
             <span className="text-xl font-bold text-yellow-500 uppercase tracking-widest">Institut ITI</span>
           </div>
           <p className="font-body-md text-sm leading-relaxed text-blue-100/80">
