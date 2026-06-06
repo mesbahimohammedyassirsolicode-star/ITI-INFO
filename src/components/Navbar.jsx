@@ -47,7 +47,7 @@ const Navbar = () => {
             alt="Logo Institut ITI"
             className="h-12 w-auto object-contain rounded-md"
           />
-          <span className="text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">Institut ITI</span>
+          <span className="text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">TRANS INFORMATIQUE</span>
         </Link>
 
         {/* Menu Bureau */}
