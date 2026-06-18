@@ -27,9 +27,9 @@ const Home = () => {
         </div>
         <div className="container mx-auto px-8 relative z-10 max-w-7xl">
           <div className="max-w-2xl text-white">
-            <span className="inline-block py-1 px-3 rounded-full bg-tertiary-container text-on-tertiary-container font-label-md mb-6 uppercase tracking-widest text-xs">Inscriptions Ouvertes 2024</span>
+            <span className="inline-block py-1 px-3 rounded-full bg-tertiary-container text-on-tertiary-container font-label-md mb-6 uppercase tracking-widest text-xs">Inscriptions Ouvertes 2026</span>
             <h1 className="font-headline-xl text-white mb-6 leading-tight">Préparez votre carrière dès aujourd'hui</h1>
-            <p className="font-body-lg text-primary-fixed mb-8 opacity-90">Rejoignez le premier institut technique de Tanger. Depuis 1986, nous formons la prochaine génération de professionnels de l'informatique et de la gestion avec des diplômes reconnus.</p>
+            <p className="font-body-lg text-primary-fixed mb-8 opacity-90">Rejoignez le premier institut trans informatique de Tanger. Depuis 1986, nous formons la prochaine génération de professionnels de l'informatique et de la gestion avec des diplômes reconnus.</p>
             <div className="flex flex-wrap gap-4">
               <MagneticHover>
                 <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-8 py-4 rounded-xl font-headline-md shadow-lg hover:shadow-xl transform transition-all uppercase tracking-widest text-sm block">Postuler Maintenant</Link>
@@ -72,7 +72,7 @@ const Home = () => {
             <div>
               <h2 className="font-headline-lg text-primary mb-6">Bâtir l'excellence depuis 1986</h2>
               <p className="font-body-md text-on-surface-variant mb-6 leading-relaxed">
-                Fondée en 1986 au cœur de Tanger, l'Institut ITI (Institut Technique d'Informatique) s'est imposée comme une pierre angulaire de l'enseignement technique dans le Nord du Maroc. Notre mission est de fournir une formation professionnelle de haute qualité qui répond aux exigences évolutives du marché de l'emploi.
+                Fondée en 1986 au cœur de Tanger, l'Institut ITI (Institut Trans Informatique) s'est imposée comme une pierre angulaire de l'enseignement technique dans le Nord du Maroc. Notre mission est de fournir une formation professionnelle de haute qualité qui répond aux exigences évolutives du marché de l'emploi.
               </p>
               <p className="font-body-md text-on-surface-variant mb-8 leading-relaxed">
                 Nous sommes fiers d'offrir un environnement d'apprentissage structuré où les compétences pratiques rencontrent la rigueur théorique, garantissant que nos diplômés sont prêts pour une carrière réussie.

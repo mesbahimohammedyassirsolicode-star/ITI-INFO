@@ -65,7 +65,7 @@ const Footer = () => {
       </div>
       <div className="max-w-7xl mx-auto px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderTop: '1px solid rgba(107, 29, 42, 0.3)' }}>
         <p className="font-body-md text-sm leading-relaxed" style={{ color: '#6B1D2A' }}>
-          © 2024 Institut ITI - Institut Technique d'Informatique. Tous droits réservés.
+          © 2026 Institut ITI - Institut Trans Informatique. Tous droits réservés.
         </p>
         <div className="flex gap-6">
           <span className="material-symbols-outlined cursor-pointer transition-colors" style={{ color: '#6B1D2A' }}>social_leaderboard</span>
