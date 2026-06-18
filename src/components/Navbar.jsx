@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { fadeUp } from '../animations/motionVariants';
 import MagneticHover from './MagneticHover';
 import itiLogo from '../assets/iti-logo.png';
+import accreditationLogo from '../assets/accreditation-logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,6 +47,11 @@ const Navbar = () => {
             src={itiLogo}
             alt="Logo Institut ITI"
             className="h-12 w-auto object-contain rounded-md"
+          />
+          <img
+            src={accreditationLogo}
+            alt="Accréditation Formation Professionnelle"
+            className="h-20 w-auto object-contain opacity-70"
           />
           <span className="text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">TRANS INFORMATIQUE</span>
         </Link>
