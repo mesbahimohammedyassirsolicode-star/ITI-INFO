@@ -9,7 +9,7 @@ const Home = () => {
     <div className="flex flex-col">
       {/* Section Héros */}
       <motion.section
-        className="relative h-[600px] md:h-[870px] flex items-center overflow-hidden"
+        className="relative h-[480px] sm:h-[600px] md:h-[870px] flex items-center overflow-hidden"
         variants={fadeUp}
         initial="hidden"
         animate="show"
@@ -25,17 +25,17 @@ const Home = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/40"></div>
         </div>
-        <div className="container mx-auto px-8 relative z-10 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 relative z-10 max-w-7xl">
           <div className="max-w-2xl text-white">
-            <span className="inline-block py-1 px-3 rounded-full bg-tertiary-container text-on-tertiary-container font-label-md mb-6 uppercase tracking-widest text-xs">Inscriptions Ouvertes 2026</span>
-            <h1 className="font-headline-xl text-white mb-6 leading-tight">Préparez votre carrière dès aujourd'hui</h1>
-            <p className="font-body-lg text-primary-fixed mb-8 opacity-90">Rejoignez le premier institut trans informatique de Tanger. Depuis 1986, nous formons la prochaine génération de professionnels de l'informatique et de la gestion avec des diplômes reconnus.</p>
-            <div className="flex flex-wrap gap-4">
+            <span className="inline-block py-1 px-3 rounded-full bg-tertiary-container text-on-tertiary-container font-label-md mb-4 md:mb-6 uppercase tracking-widest text-[10px] md:text-xs">Inscriptions Ouvertes 2026</span>
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">Préparez votre carrière dès aujourd'hui</h1>
+            <p className="text-sm sm:text-base md:text-lg text-primary-fixed mb-6 md:mb-8 opacity-90 leading-relaxed">Rejoignez le premier institut trans informatique de Tanger. Depuis 1986, nous formons la prochaine génération de professionnels de l'informatique et de la gestion avec des diplômes reconnus.</p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <MagneticHover>
-                <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-8 py-4 rounded-xl font-headline-md shadow-lg hover:shadow-xl transform transition-all uppercase tracking-widest text-sm block">Postuler Maintenant</Link>
+                <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-6 md:px-8 py-3 md:py-4 rounded-xl font-headline-md shadow-lg hover:shadow-xl transform transition-all uppercase tracking-widest text-xs md:text-sm block text-center">Postuler Maintenant</Link>
               </MagneticHover>
               <MagneticHover>
-                <Link to="/formations" className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-xl font-headline-md hover:bg-white/20 transition-all uppercase tracking-widest text-sm block">Voir les Formations</Link>
+                <Link to="/formations" className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-headline-md hover:bg-white/20 transition-all uppercase tracking-widest text-xs md:text-sm block text-center">Voir les Formations</Link>
               </MagneticHover>
             </div>
           </div>
@@ -44,19 +44,19 @@ const Home = () => {
 
       {/* Section À Propos */}
       <motion.section
-        className="py-20 bg-white"
+        className="py-12 md:py-20 bg-white"
         id="a-propos"
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="container mx-auto px-8 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-tertiary-container rounded-xl -z-10 opacity-20"></div>
               <motion.img 
-                className="rounded-xl shadow-2xl w-full h-[400px] object-cover" 
+                className="rounded-xl shadow-2xl w-full h-[250px] sm:h-[350px] md:h-[400px] object-cover" 
                 alt="Étudiants à l'ITI"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA2gyScZsd3-hC2m31wmkQLNZABOrnhAiufRB_947WfyLUXLWrCLB__JqJb4iqrXZymxLYsVV_EeCM0B519Be5aX6wXy25fHMx9GDgjYnuf-Yq-zGndtdWqEfrFz-Twg-cOSclxqtZcjW3nEcUYYdKrpypJc6CSUaXm73fixkyh4S57_VXhgiywtiJEvw_-5zdhHemAZDNtO_AZuCD6FMG1egCg9put3295ehfPE2pQJqhC30dMbmuKQlOSCbIOr_Yrh6JNYrQiG0"
                 variants={imageReveal}
@@ -103,14 +103,14 @@ const Home = () => {
 
       {/* Aperçu des Formations */}
       <motion.section
-        className="py-20 bg-surface-container-low"
+        className="py-12 md:py-20 bg-surface-container-low"
         id="formations"
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.15 }}
       >
-        <div className="container mx-auto px-8 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-8 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="font-headline-lg text-primary mb-4">Nos Programmes Académiques</h2>
             <p className="text-on-surface-variant max-w-2xl mx-auto">Découvrez un cursus conçu pour le monde moderne, combinant maîtrise technique et sens des affaires.</p>
@@ -169,27 +169,27 @@ const Home = () => {
 
       {/* Quick Registration CTA */}
       <motion.section
-        className="py-20 bg-white"
+        className="py-12 md:py-20 bg-white"
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="container mx-auto px-8 max-w-7xl">
-          <div className="bg-secondary rounded-2xl p-12 text-center text-white relative overflow-hidden shadow-2xl">
+        <div className="container mx-auto px-6 md:px-8 max-w-7xl">
+          <div className="bg-secondary rounded-2xl p-6 md:p-12 text-center text-white relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 opacity-10 pointer-events-none">
               <div className="absolute top-0 left-0 w-64 h-64 border-4 border-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
               <div className="absolute bottom-0 right-0 w-96 h-96 border-4 border-white rounded-full translate-x-1/2 translate-y-1/2"></div>
             </div>
             <div className="relative z-10 max-w-2xl mx-auto">
-              <h2 className="font-headline-lg text-white mb-6">Prêt à transformer votre carrière ?</h2>
-              <p className="font-body-lg text-white mb-8 opacity-90">Inscrivez-vous dès aujourd'hui pour la session prochaine et bénéficiez de notre accompagnement vers l'emploi.</p>
+              <h2 className="font-headline-lg text-white mb-4 md:mb-6">Prêt à transformer votre carrière ?</h2>
+              <p className="font-body-lg text-white mb-6 md:mb-8 opacity-90">Inscrivez-vous dès aujourd'hui pour la session prochaine et bénéficiez de notre accompagnement vers l'emploi.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <MagneticHover>
-                  <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-8 py-4 rounded-xl font-black text-lg transition-transform uppercase tracking-widest shadow-lg block">S'INSCRIRE MAINTENANT</Link>
+                  <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-6 md:px-8 py-3 md:py-4 rounded-xl font-black text-base md:text-lg transition-transform uppercase tracking-widest shadow-lg block text-center">S'INSCRIRE MAINTENANT</Link>
                 </MagneticHover>
                 <MagneticHover>
-                  <Link to="/contact" className="bg-transparent border-2 border-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-secondary transition-colors duration-200 uppercase tracking-widest block">NOUS CONTACTER</Link>
+                  <Link to="/contact" className="bg-transparent border-2 border-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-white hover:text-secondary transition-colors duration-200 uppercase tracking-widest block text-center">NOUS CONTACTER</Link>
                 </MagneticHover>
               </div>
             </div>

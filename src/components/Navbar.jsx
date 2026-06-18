@@ -41,19 +41,19 @@ const Navbar = () => {
       animate="show"
       variants={fadeUp}
     >
-      <nav className="flex justify-between items-center w-full h-20 px-8 max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-4 shrink-0">
+      <nav className="flex justify-between items-center w-full h-16 md:h-20 px-4 md:px-8 max-w-7xl mx-auto">
+        <Link to="/" className="flex items-center gap-2 md:gap-4 shrink-0">
           <img
             src={itiLogo}
             alt="Logo Institut ITI"
-            className="h-12 w-auto object-contain rounded-md"
+            className="h-9 md:h-12 w-auto object-contain rounded-md"
           />
           <img
             src={accreditationLogo}
             alt="Accréditation Formation Professionnelle"
-            className="h-20 w-auto object-contain opacity-70"
+            className="h-12 md:h-20 w-auto object-contain opacity-70"
           />
-          <span className="text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">TRANS INFORMATIQUE</span>
+          <span className="hidden lg:inline text-lg xl:text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">TRANS INFORMATIQUE</span>
         </Link>
 
         {/* Menu Bureau */}
@@ -82,10 +82,10 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <MagneticHover>
+          <MagneticHover className="hidden sm:block">
             <Link 
               to="/inscription"
-              className="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-xl font-headline-md text-sm transform transition-all shadow-md uppercase tracking-widest block"
+              className="bg-secondary-container text-on-secondary-container px-4 md:px-6 py-2 rounded-xl font-headline-md text-xs md:text-sm transform transition-all shadow-md uppercase tracking-widest block"
             >
               S'inscrire
             </Link>
@@ -93,7 +93,7 @@ const Navbar = () => {
           
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-primary"
+            className="md:hidden text-primary ml-1"
             onClick={() => setIsOpen(!isOpen)}
           >
             <span className="material-symbols-outlined text-3xl">
@@ -122,6 +122,13 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            <Link
+              to="/inscription"
+              className="block bg-secondary-container text-on-secondary-container px-6 py-3 rounded-xl font-headline-md text-sm shadow-md uppercase tracking-widest text-center mt-4"
+              onClick={() => setIsOpen(false)}
+            >
+              S'inscrire
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

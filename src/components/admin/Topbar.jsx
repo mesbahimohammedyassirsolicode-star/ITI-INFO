@@ -14,9 +14,9 @@ const Topbar = ({ title = "Admin Dashboard" }) => {
   };
 
   return (
-    <header className="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 px-6 md:px-8 flex items-center justify-between">
+    <header className="h-16 md:h-20 bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 px-4 md:px-8 flex items-center justify-between">
       <div className="flex items-center gap-4">
-        <h1 className="text-xl font-bold text-slate-800">{title}</h1>
+        <h1 className="text-base md:text-xl font-bold text-slate-800">{title}</h1>
       </div>
 
       <div className="flex items-center gap-3 md:gap-6">

@@ -8,20 +8,20 @@ const Footer = () => {
       className="text-white w-full rounded-none mt-auto"
       style={{ background: 'linear-gradient(135deg, #F1CCD0 0%, #E8A5AB 100%)' }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-16 px-8 max-w-7xl mx-auto w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 py-12 md:py-16 px-6 md:px-8 max-w-7xl mx-auto w-full">
         <div>
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex flex-wrap items-center gap-3 mb-6">
             <img
               src={itiLogo}
               alt="Logo Institut ITI"
-              className="h-12 w-auto object-contain rounded-md"
+              className="h-10 md:h-12 w-auto object-contain rounded-md"
             />
             <img
               src={accreditationLogo}
               alt="Accréditation Formation Professionnelle"
-              className="h-20 w-auto object-contain"
+              className="h-14 md:h-20 w-auto object-contain"
             />
-            <span className="text-xl font-bold uppercase tracking-widest" style={{ color: '#6B1D2A' }}>Institut ITI</span>
+            <span className="w-full md:w-auto text-lg md:text-xl font-bold uppercase tracking-widest" style={{ color: '#6B1D2A' }}>Institut ITI</span>
           </div>
           <p className="font-body-md text-sm leading-relaxed" style={{ color: '#4A1520' }}>
             Donner aux étudiants les moyens d'agir grâce à une formation en informatique et en gestion axée sur la carrière. Façonner l'avenir du paysage professionnel de Tanger depuis 1986.
@@ -63,7 +63,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderTop: '1px solid rgba(107, 29, 42, 0.3)' }}>
+      <div className="max-w-7xl mx-auto px-6 md:px-8 py-6 md:py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left" style={{ borderTop: '1px solid rgba(107, 29, 42, 0.3)' }}>
         <p className="font-body-md text-sm leading-relaxed" style={{ color: '#6B1D2A' }}>
           © 2026 Institut ITI - Institut Trans Informatique. Tous droits réservés.
         </p>
