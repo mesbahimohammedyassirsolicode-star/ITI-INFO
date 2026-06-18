@@ -4,11 +4,19 @@ import { motion } from 'framer-motion';
 import { formationService } from '../services/api';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal } from '../animations/motionVariants';
+import useSEO from '../hooks/useSEO';
 
 const FormationDetails = () => {
   const { id } = useParams();
   const [formation, setFormation] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  useSEO({
+    title: formation ? `${formation.title} | Institut ITI Tanger` : 'Formation | Institut ITI Tanger',
+    description: formation?.description || "D\u00e9couvrez les d\u00e9tails de la formation \u00e0 l'Institut ITI \u00e0 Tanger.",
+    canonical: formation ? `https://institut-iti.ma/formations/${formation.id || id}` : undefined,
+    ogImage: formation?.image || undefined,
+  });
 
   useEffect(() => {
     const fetchFormation = async () => {

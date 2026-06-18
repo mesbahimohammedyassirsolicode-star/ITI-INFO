@@ -4,8 +4,14 @@ import { motion } from 'framer-motion';
 import { formationService, inscriptionService } from '../services/api';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
+import useSEO from '../hooks/useSEO';
 
 const Inscription = () => {
+  useSEO({
+    title: 'Inscription 2026 - Institut ITI Tanger | Postulez en Ligne',
+    description: "Inscrivez-vous \u00e0 l'Institut ITI \u00e0 Tanger pour la session 2026-2027. Remplissez le formulaire de candidature en ligne. Processus d'admission transparent en 3 \u00e9tapes.",
+    canonical: 'https://institut-iti.ma/inscription',
+  });
   const location = useLocation();
   const [formations, setFormations] = useState([]);
   const [formData, setFormData] = useState({

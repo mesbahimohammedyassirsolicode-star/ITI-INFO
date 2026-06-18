@@ -3,8 +3,14 @@ import { motion } from 'framer-motion';
 import CategorySection from '../components/CategorySection';
 import { categoryService, formationService } from '../services/api';
 import { buttonMotion, fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
+import useSEO from '../hooks/useSEO';
 
 const Formations = () => {
+  useSEO({
+    title: 'Formations Professionnelles \u00e0 Tanger | Institut ITI - Informatique, Logistique, Gestion',
+    description: "D\u00e9couvrez les formations de l'Institut ITI \u00e0 Tanger : Technicien Sp\u00e9cialis\u00e9 en Logistique et Gestion, Programmation Web, Comptabilit\u00e9, Bureautique. Dipl\u00f4mes accr\u00e9dit\u00e9s.",
+    canonical: 'https://institut-iti.ma/formations',
+  });
   const [activeCategory, setActiveCategory] = useState('Toutes');
   const [categories, setCategories] = useState(['Toutes']);
   const [formations, setFormations] = useState([]);

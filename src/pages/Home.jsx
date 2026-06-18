@@ -3,8 +3,15 @@ import { motion } from 'framer-motion';
 import AnimatedCounter from '../components/AnimatedCounter';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
+import useSEO from '../hooks/useSEO';
 
 const Home = () => {
+  useSEO({
+    title: 'Institut ITI Tanger | Formations Professionnelles en Informatique & Gestion',
+    description: "Formations professionnelles en informatique, logistique et gestion \u00e0 Tanger. Dipl\u00f4mes accr\u00e9dit\u00e9s par l'\u00c9tat depuis 1986. Inscrivez-vous pour la session 2026-2027.",
+    canonical: 'https://institut-iti.ma/',
+  });
+
   return (
     <div className="flex flex-col">
       {/* Section Héros */}
@@ -163,6 +170,61 @@ const Home = () => {
                 Explorer toutes les formations <span className="material-symbols-outlined">east</span>
               </Link>
             </MagneticHover>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Section FAQ */}
+      <motion.section
+        className="py-12 md:py-20 bg-surface-container-low"
+        id="faq"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+      >
+        <div className="container mx-auto px-6 md:px-8 max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="font-headline-lg text-primary mb-4">Questions Fréquentes</h2>
+            <p className="text-on-surface-variant max-w-2xl mx-auto">Retrouvez les réponses aux questions les plus posées sur l'Institut ITI, nos formations et le processus d'admission.</p>
+          </div>
+          <div className="space-y-4">
+            {[
+              {
+                q: "Quelles formations propose l'Institut ITI à Tanger ?",
+                a: "L'Institut ITI propose des diplômes de Technicien Spécialisé en Gestion de la Navigation & Logistique et en Gestion des Entreprises (2 ans), ainsi que des formations continues en Programmation Web (6 mois), Comptabilité (4 mois), Bureautique et Logiciels Comptables (SAGE, SAP)."
+              },
+              {
+                q: "L'Institut ITI est-il accrédité par l'État ?",
+                a: "Oui, l'Institut Trans Informatique (ITI) est un établissement de formation professionnelle accrédité par l'État marocain. Les diplômes délivrés sont reconnus officiellement et permettent une insertion professionnelle directe sur le marché du travail national et international."
+              },
+              {
+                q: "Comment s'inscrire pour la session 2026-2027 ?",
+                a: "Les inscriptions se font en ligne via notre formulaire de candidature sur le site. Remplissez vos informations personnelles, choisissez votre programme, et notre équipe d'admission vous contactera dans les 24 heures pour planifier votre entretien. Vous pouvez aussi nous appeler au 05 39 93 95 37."
+              },
+              {
+                q: "Quelle est la durée des formations à l'ITI ?",
+                a: "Les diplômes de Technicien Spécialisé durent 2 ans. Les formations continues varient de 4 mois (Comptabilité) à 6 mois (Programmation Web). Les formations pratiques en bureautique et logiciels comptables sont de courte durée, adaptées aux professionnels en activité."
+              },
+              {
+                q: "Où se trouve l'Institut ITI et comment les contacter ?",
+                a: "L'Institut ITI est situé au 42, Rue de Fès à Tanger, Maroc. Vous pouvez nous joindre par téléphone au 05 39 93 95 37 ou 06 68 43 48 95, par e-mail à institutrans@gmail.com, ou via le formulaire de contact sur notre site."
+              }
+            ].map((item, index) => (
+              <motion.details
+                key={index}
+                className="group bg-white rounded-xl border border-outline-variant/30 shadow-sm hover:shadow-md transition-all"
+                variants={fadeUp}
+              >
+                <summary className="flex items-center justify-between cursor-pointer p-6 font-headline-md text-primary text-sm md:text-base uppercase tracking-tight">
+                  {item.q}
+                  <span className="material-symbols-outlined text-secondary ml-4 transition-transform group-open:rotate-180">expand_more</span>
+                </summary>
+                <div className="px-6 pb-6 text-on-surface-variant text-sm leading-relaxed">
+                  {item.a}
+                </div>
+              </motion.details>
+            ))}
           </div>
         </div>
       </motion.section>

@@ -3,8 +3,14 @@ import { motion } from 'framer-motion';
 import { contactService } from '../services/api';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
+import useSEO from '../hooks/useSEO';
 
 const Contact = () => {
+  useSEO({
+    title: "Contactez l'Institut ITI Tanger | Admissions & Renseignements",
+    description: "Contactez l'Institut ITI \u00e0 Tanger pour vos questions sur les formations et admissions. T\u00e9l\u00e9phone: 05 39 93 95 37. E-mail: institutrans@gmail.com. Adresse: 42, Rue de F\u00e8s, Tanger.",
+    canonical: 'https://institut-iti.ma/contact',
+  });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
