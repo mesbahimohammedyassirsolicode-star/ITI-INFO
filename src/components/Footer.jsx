@@ -55,7 +55,7 @@ const Footer = () => {
           </p>
           <p className="font-body-md text-sm flex items-center gap-2" style={{ color: '#4A1520' }}>
             <span className="material-symbols-outlined text-sm">mail</span>
-            institutrans@gmail.com
+            instituttrans@gmail.com
           </p>
           <p className="font-body-md text-sm flex items-center gap-2" style={{ color: '#4A1520' }}>
             <span className="material-symbols-outlined text-sm">call</span>

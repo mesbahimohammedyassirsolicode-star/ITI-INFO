@@ -8,7 +8,7 @@ import useSEO from '../hooks/useSEO';
 const Contact = () => {
   useSEO({
     title: "Contactez l'Institut ITI Tanger | Admissions & Renseignements",
-    description: "Contactez l'Institut ITI \u00e0 Tanger pour vos questions sur les formations et admissions. T\u00e9l\u00e9phone: 05 39 93 95 37. E-mail: institutrans@gmail.com. Adresse: 42, Rue de F\u00e8s, Tanger.",
+    description: "Contactez l'Institut ITI \u00e0 Tanger pour vos questions sur les formations et admissions. T\u00e9l\u00e9phone: 05 39 93 95 37. E-mail: instituttrans@gmail.com. Adresse: 42, Rue de F\u00e8s, Tanger.",
     canonical: 'https://institut-iti.ma/contact',
   });
   const [formData, setFormData] = useState({
@@ -104,7 +104,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-headline-md text-primary mb-1 uppercase text-sm tracking-widest">Écrivez-nous</h4>
-                    <p className="text-on-surface-variant">institutrans@gmail.com</p>
+                    <p className="text-on-surface-variant">instituttrans@gmail.com</p>
                   </div>
                 </motion.div>
               </div>

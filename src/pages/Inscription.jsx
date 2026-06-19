@@ -164,7 +164,7 @@ const Inscription = () => {
                   <span className="material-symbols-outlined text-tertiary-fixed text-3xl">mail</span>
                   <div>
                     <p className="font-bold uppercase text-[10px] tracking-widest opacity-60">E-mail Admissions</p>
-                    <p className="text-sm font-medium">institutrans@gmail.com</p>
+                    <p className="text-sm font-medium">instituttrans@gmail.com</p>
                   </div>
                 </div>
               </div>

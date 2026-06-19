@@ -208,7 +208,7 @@ const Home = () => {
               },
               {
                 q: "Où se trouve l'Institut ITI et comment les contacter ?",
-                a: "L'Institut ITI est situé au 42, Rue de Fès à Tanger, Maroc. Vous pouvez nous joindre par téléphone au 05 39 93 95 37 ou 06 68 43 48 95, par e-mail à institutrans@gmail.com, ou via le formulaire de contact sur notre site."
+                a: "L'Institut ITI est situé au 42, Rue de Fès à Tanger, Maroc. Vous pouvez nous joindre par téléphone au 05 39 93 95 37 ou 06 68 43 48 95, par e-mail à instituttrans@gmail.com, ou via le formulaire de contact sur notre site."
               }
             ].map((item, index) => (
               <motion.details
