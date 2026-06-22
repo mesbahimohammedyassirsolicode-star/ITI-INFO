@@ -40,7 +40,6 @@ const Login = () => {
                     Institut ITI - Panel d'administration
                 </p>
                 <p className="mt-1 text-center text-xs text-gray-500">
-                    Compte de demo: admin@iti.ma / admin123
                 </p>
             </div>
 

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import CursorAura from './components/CursorAura';
+import ScrollProgressBar from './components/ScrollProgressBar';
 import { pageLoad } from './animations/motionVariants';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -30,6 +31,7 @@ function AppContent() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {!isAdminPath && !isLoginPage && <ScrollProgressBar />}
       {!isAdminPath && !isLoginPage && <CursorAura />}
       {!isAdminPath && !isLoginPage && <Navbar />}
       <motion.main
