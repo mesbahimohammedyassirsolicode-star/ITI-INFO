@@ -79,27 +79,6 @@ const Home = () => {
             </div>
 
             <div>
-              <label htmlFor="training" className="mb-1 block text-sm font-medium">
-                Training choice
-              </label>
-              <select
-                id="training"
-                name="training"
-                value={formData.training}
-                onChange={handleChange}
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100 dark:border-slate-700 dark:bg-slate-800 dark:focus:ring-cyan-500/20"
-              >
-                <option value="">Select a program</option>
-                {trainingOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              {errors.training ? <p className="mt-1 text-xs text-red-500">{errors.training}</p> : null}
-            </div>
-
-            <div>
               <h2 className="font-headline-lg text-primary mb-6">Bâtir l'excellence depuis 1986</h2>
               <p className="font-body-md text-on-surface-variant mb-6 leading-relaxed">
                 Fondée en 1986 au cœur de Tanger, l'Institut ITI (Institut Trans Informatique) s'est imposée comme une pierre angulaire de l'enseignement technique dans le Nord du Maroc. Notre mission est de fournir une formation professionnelle de haute qualité qui répond aux exigences évolutives du marché de l'emploi.
@@ -114,13 +93,22 @@ const Home = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <span className="material-symbols-outlined rounded-xl bg-cyan-100 p-3 text-cyan-600 dark:bg-cyan-500/15 dark:text-cyan-300">
-                  {item.icon}
-                </span>
-                <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{item.description}</p>
-              </motion.article>
-            ))}
+                {[
+                  { icon: 'school', title: 'Diplômes Accrédités', description: 'Reconnus par l\'État depuis 1992' },
+                  { icon: 'groups', title: 'Encadrement Expert', description: 'Formateurs qualifiés et expérimentés' },
+                  { icon: 'work', title: 'Insertion Pro', description: 'Accompagnement vers l\'emploi' },
+                  { icon: 'emoji_events', title: 'Excellence', description: '38+ ans d\'expérience pédagogique' },
+                ].map((item, index) => (
+                  <motion.div key={index} className="bg-surface-container-low rounded-xl p-4 text-center" variants={fadeUp}>
+                    <span className="material-symbols-outlined text-3xl text-secondary mb-2">
+                      {item.icon}
+                    </span>
+                    <h3 className="font-headline-md text-primary text-sm mb-1">{item.title}</h3>
+                    <p className="text-on-surface-variant text-xs">{item.description}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </div>
         </div>
       </motion.section>
@@ -164,7 +152,7 @@ const Home = () => {
                   />
                 </div>
               </div>
-            ))}
+            </motion.div>
           </div>
         </div>
       </motion.section>

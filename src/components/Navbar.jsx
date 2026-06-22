@@ -95,7 +95,7 @@ const Navbar = () => {
               className="bg-secondary-container text-on-secondary-container px-4 md:px-6 py-2 rounded-xl font-headline-md text-xs md:text-sm transform transition-all shadow-md uppercase tracking-widest block"
             >
               Register Now
-            </button>
+            </Link>
           </MagneticHover>
           
           {/* Mobile Menu Button */}
