@@ -36,7 +36,7 @@ const Home = () => {
           <div className="max-w-2xl text-white">
             <span className="inline-block py-1 px-3 rounded-full bg-tertiary-container text-on-tertiary-container font-label-md mb-4 md:mb-6 uppercase tracking-widest text-[10px] md:text-xs">Inscriptions Ouvertes 2026</span>
             <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">Préparez votre carrière dès aujourd'hui</h1>
-            <p className="text-sm sm:text-base md:text-lg text-primary-fixed mb-6 md:mb-8 opacity-90 leading-relaxed">Rejoignez le premier institut trans informatique de Tanger. Depuis 1986, nous formons la prochaine génération de professionnels de l'informatique et de la gestion avec des diplômes reconnus.</p>
+            <p className="text-sm sm:text-base md:text-lg text-primary-fixed mb-6 md:mb-8 opacity-90 leading-relaxed">Rejoignez notre institut, <b>l’Institut Trans Informatique</b>. Créé en 1986, nous formons des générations de professionnels de l’informatique et de la gestion, avec des diplômes reconnus depuis 1992.</p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <MagneticHover>
                 <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-6 md:px-8 py-3 md:py-4 rounded-xl font-headline-md shadow-lg hover:shadow-xl transform transition-all uppercase tracking-widest text-xs md:text-sm block text-center">Postuler Maintenant</Link>

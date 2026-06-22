@@ -41,23 +41,23 @@ const Navbar = () => {
       animate="show"
       variants={fadeUp}
     >
-      <nav className="flex justify-between items-center w-full h-16 md:h-20 px-4 md:px-8 max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-2 md:gap-4 shrink-0">
+      <nav className="flex items-center w-full h-16 md:h-20 px-4 md:px-8">
+        <Link to="/" className="flex items-center gap-2 md:gap-4 shrink-0 mr-auto">
           <img
             src={itiLogo}
             alt="Logo Institut ITI"
-            className="h-9 md:h-12 w-auto object-contain rounded-md"
+            className="h-12 md:h-16 w-auto object-contain rounded-md"
           />
           <img
             src={accreditationLogo}
             alt="Accréditation Formation Professionnelle"
-            className="h-12 md:h-20 w-auto object-contain opacity-70"
+            className="h-14 md:h-24 w-auto object-contain opacity-70"
           />
-          <span className="hidden lg:inline text-lg xl:text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">TRANS INFORMATIQUE</span>
+          <span className="hidden lg:inline text-lg xl:text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">INSTITUS TRANS INFORMATIQUE</span>
         </Link>
 
         {/* Menu Bureau */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-14">
           {navLinks.map((link) => (
             <motion.div key={link.name} className="relative">
               <Link
@@ -81,7 +81,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 ml-auto">
           <MagneticHover className="hidden sm:block">
             <Link 
               to="/inscription"
