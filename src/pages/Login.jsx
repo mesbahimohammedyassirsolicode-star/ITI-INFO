@@ -37,7 +37,7 @@ const Login = () => {
                     Connexion Admin
                 </h2>
                 <p className="mt-2 text-center text-sm text-gray-600">
-                    Institut ITI - Panel d'administration
+                    Institut TRANS - Panel d'administration
                 </p>
                 <p className="mt-1 text-center text-xs text-gray-500">
                 </p>
