@@ -32,5 +32,3 @@ npm run preview
 
 ## Demo admin credentials
 
-- Email: `admin@iti.ma`
-- Password: `admin123`
