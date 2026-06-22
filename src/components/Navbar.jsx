@@ -53,7 +53,7 @@ const Navbar = () => {
             alt="Accréditation Formation Professionnelle"
             className="h-14 md:h-24 w-auto object-contain opacity-70"
           />
-          <span className="hidden lg:inline text-lg xl:text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">INSTITUS TRANS INFORMATIQUE</span>
+          <span className="hidden lg:inline text-lg xl:text-2xl font-black tracking-tight text-blue-900 dark:text-blue-100 uppercase">INSTITUT TRANS INFORMATIQUE</span>
         </Link>
 
         {/* Menu Bureau */}
