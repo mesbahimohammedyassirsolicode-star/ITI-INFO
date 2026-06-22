@@ -3,8 +3,14 @@ import { motion } from 'framer-motion';
 import { contactService } from '../services/api';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
+import useSEO from '../hooks/useSEO';
 
 const Contact = () => {
+  useSEO({
+    title: "Contactez l'Institut ITI Tanger | Admissions & Renseignements",
+    description: "Contactez l'Institut ITI \u00e0 Tanger pour vos questions sur les formations et admissions. T\u00e9l\u00e9phone: 05 39 93 95 37. E-mail: instituttrans@gmail.com. Adresse: 42, Rue de F\u00e8s, Tanger.",
+    canonical: 'https://institut-iti.ma/contact',
+  });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,27 +44,27 @@ const Contact = () => {
     <div className="bg-background min-h-screen">
       {/* Header */}
       <motion.section
-        className="bg-primary py-20 text-white"
+        className="bg-primary py-12 md:py-20 text-white"
         variants={fadeUp}
         initial="hidden"
         animate="show"
       >
-        <div className="max-w-7xl mx-auto px-8 text-center">
-          <h1 className="font-headline-xl mb-4">Contactez-nous</h1>
-          <p className="text-primary-fixed-dim max-w-2xl mx-auto opacity-80">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4">Contactez-nous</h1>
+          <p className="text-sm sm:text-base max-w-2xl mx-auto opacity-80">
             Vous avez des questions sur nos programmes ou le processus d'admission ? Contactez-nous, nous serons ravis de vous aider.
           </p>
         </div>
       </motion.section>
 
       <motion.section
-        className="py-20"
+        className="py-12 md:py-20"
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.1 }}
       >
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           <motion.div
             className="grid grid-cols-1 lg:grid-cols-2 gap-20"
             variants={staggerContainer}
@@ -98,14 +104,14 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-headline-md text-primary mb-1 uppercase text-sm tracking-widest">Écrivez-nous</h4>
-                    <p className="text-on-surface-variant">institutrans@gmail.com</p>
+                    <p className="text-on-surface-variant">instituttrans@gmail.com</p>
                   </div>
                 </motion.div>
               </div>
 
               {/* Map */}
               <motion.div
-                className="h-[450px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white mt-12"
+                className="h-[300px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white mt-12"
                 variants={imageReveal}
               >
                 <iframe
@@ -123,7 +129,7 @@ const Contact = () => {
 
             {/* Contact Form */}
             <motion.div
-              className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100"
+              className="bg-white p-6 md:p-10 rounded-3xl shadow-xl border border-gray-100"
               variants={fadeUp}
             >
               <h3 className="font-headline-md text-primary mb-8">Envoyez-nous un message</h3>

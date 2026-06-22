@@ -4,11 +4,19 @@ import { motion } from 'framer-motion';
 import { formationService } from '../services/api';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal } from '../animations/motionVariants';
+import useSEO from '../hooks/useSEO';
 
 const FormationDetails = () => {
   const { id } = useParams();
   const [formation, setFormation] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  useSEO({
+    title: formation ? `${formation.title} | Institut ITI Tanger` : 'Formation | Institut ITI Tanger',
+    description: formation?.description || "D\u00e9couvrez les d\u00e9tails de la formation \u00e0 l'Institut ITI \u00e0 Tanger.",
+    canonical: formation ? `https://institut-iti.ma/formations/${formation.id || id}` : undefined,
+    ogImage: formation?.image || undefined,
+  });
 
   useEffect(() => {
     const fetchFormation = async () => {
@@ -41,7 +49,7 @@ const FormationDetails = () => {
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
       <motion.section
-        className="relative h-[500px] overflow-hidden"
+        className="relative h-[350px] sm:h-[400px] md:h-[500px] overflow-hidden"
         variants={fadeUp}
         initial="hidden"
         animate="show"
@@ -54,14 +62,14 @@ const FormationDetails = () => {
           initial="hidden"
           animate="show"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent flex items-end pb-20">
-          <div className="max-w-7xl mx-auto w-full px-8">
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent flex items-end pb-12 md:pb-20">
+          <div className="max-w-7xl mx-auto w-full px-6 md:px-8">
             <div className="max-w-3xl text-white">
-              <span className="bg-tertiary-container text-on-tertiary-container px-4 py-1 text-xs font-bold uppercase tracking-widest mb-4 inline-block rounded">
+              <span className="bg-tertiary-container text-on-tertiary-container px-4 py-1 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-3 md:mb-4 inline-block rounded">
                 {formation.category?.name}
               </span>
-              <h1 className="font-headline-xl text-white mb-6">{formation.title}</h1>
-              <div className="flex flex-wrap gap-8">
+              <h1 className="text-xl sm:text-2xl md:text-5xl font-bold text-white mb-4 md:mb-6">{formation.title}</h1>
+              <div className="flex flex-wrap gap-4 md:gap-8">
                 {formation.duration && (
                   <div className="flex items-center gap-3">
                     <span className="material-symbols-outlined text-tertiary-fixed">schedule</span>
@@ -79,13 +87,13 @@ const FormationDetails = () => {
       </motion.section>
 
       <motion.div
-        className="max-w-7xl mx-auto px-8 py-20"
+        className="max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-20"
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.08 }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-12">
             <div>

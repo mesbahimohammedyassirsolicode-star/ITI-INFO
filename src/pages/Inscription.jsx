@@ -4,8 +4,14 @@ import { motion } from 'framer-motion';
 import { formationService, inscriptionService } from '../services/api';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
+import useSEO from '../hooks/useSEO';
 
 const Inscription = () => {
+  useSEO({
+    title: 'Inscription 2026 - Institut ITI Tanger | Postulez en Ligne',
+    description: "Inscrivez-vous \u00e0 l'Institut ITI \u00e0 Tanger pour la session 2026-2027. Remplissez le formulaire de candidature en ligne. Processus d'admission transparent en 3 \u00e9tapes.",
+    canonical: 'https://institut-iti.ma/inscription',
+  });
   const location = useLocation();
   const [formations, setFormations] = useState([]);
   const [formData, setFormData] = useState({
@@ -61,7 +67,7 @@ const Inscription = () => {
     <div className="bg-surface min-h-screen">
       {/* Hero Header */}
       <motion.header
-        className="relative bg-primary py-24 overflow-hidden"
+        className="relative bg-primary py-12 md:py-24 overflow-hidden"
         variants={fadeUp}
         initial="hidden"
         animate="show"
@@ -69,11 +75,11 @@ const Inscription = () => {
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent"></div>
         </div>
-        <div className="max-w-7xl mx-auto px-8 relative z-10 flex flex-col md:flex-row items-center gap-16">
-          <div className="md:w-1/2 space-y-6">
-            <span className="bg-tertiary-container text-on-tertiary-container px-3 py-1 text-xs font-bold uppercase tracking-widest rounded">Inscriptions 2026-2027</span>
-            <h1 className="font-headline-xl text-white">Votre Carrière <span className="text-tertiary-fixed">Commence Ici</span></h1>
-            <p className="text-on-primary-container text-body-lg max-w-lg opacity-90">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-16">
+          <div className="md:w-1/2 space-y-4 md:space-y-6">
+            <span className="bg-tertiary-container text-on-tertiary-container px-3 py-1 text-[10px] md:text-xs font-bold uppercase tracking-widest rounded">Inscriptions 2026-2027</span>
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">Votre Carrière <span className="text-tertiary-fixed">Commence Ici</span></h1>
+            <p className="text-sm sm:text-base max-w-lg opacity-90">
               Rejoignez le premier institut technologique du Maroc. Notre processus d'admission transparent est conçu pour trouver les innovateurs de demain.
             </p>
           </div>
@@ -82,7 +88,7 @@ const Inscription = () => {
               <div className="absolute -inset-4 bg-tertiary/20 blur-2xl rounded-full"></div>
               <motion.img 
                 alt="Étudiants en train d'étudier" 
-                className="rounded-xl shadow-2xl relative z-10 w-full h-[400px] object-cover" 
+                className="rounded-xl shadow-2xl relative z-10 w-full h-[250px] sm:h-[350px] md:h-[400px] object-cover" 
                 src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
                 variants={imageReveal}
                 initial="hidden"
@@ -95,14 +101,14 @@ const Inscription = () => {
 
       {/* Process Stepper */}
       <motion.section
-        className="py-20 bg-surface-container-lowest"
+        className="py-12 md:py-20 bg-surface-container-lowest"
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="text-center mb-10 md:mb-16">
             <h2 className="font-headline-lg text-primary">Parcours d'Admission</h2>
             <div className="w-24 h-1 bg-tertiary mx-auto mt-4"></div>
           </div>
@@ -132,17 +138,17 @@ const Inscription = () => {
 
       {/* Application Form */}
       <motion.section
-        className="py-20 bg-surface-container-low"
+        className="py-12 md:py-20 bg-surface-container-low"
         id="form"
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.1 }}
       >
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="flex flex-col lg:flex-row bg-white rounded-3xl overflow-hidden shadow-2xl border border-outline-variant">
             {/* Left: Info */}
-            <div className="lg:w-1/3 bg-primary p-12 text-white">
+            <div className="lg:w-1/3 bg-primary p-8 md:p-12 text-white">
               <h2 className="font-headline-md mb-6 uppercase tracking-tight">Prêt à commencer ?</h2>
               <p className="opacity-80 mb-12 text-sm leading-relaxed">Remplissez ce formulaire et notre équipe d'admission vous contactera dans les 24 heures pour planifier votre entretien.</p>
               <div className="space-y-8">
@@ -158,13 +164,13 @@ const Inscription = () => {
                   <span className="material-symbols-outlined text-tertiary-fixed text-3xl">mail</span>
                   <div>
                     <p className="font-bold uppercase text-[10px] tracking-widest opacity-60">E-mail Admissions</p>
-                    <p className="text-sm font-medium">institutrans@gmail.com</p>
+                    <p className="text-sm font-medium">instituttrans@gmail.com</p>
                   </div>
                 </div>
               </div>
             </div>
             {/* Right: Form */}
-            <div className="lg:w-2/3 p-12">
+            <div className="lg:w-2/3 p-6 md:p-12">
               {status.message && (
                 <div className={`mb-8 p-4 rounded-xl text-sm font-bold uppercase tracking-widest ${status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                   {status.message}
