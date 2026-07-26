@@ -1,18 +1,24 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import CategorySection from '../components/CategorySection';
 import { categoryService, formationService } from '../services/api';
 import { buttonMotion, fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
 import useSEO from '../hooks/useSEO';
+import { getLocalized } from '../utils/i18nHelper';
 
 const Formations = () => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'fr';
+
   useSEO({
-    title: 'Formations Professionnelles \u00e0 Tanger | Institut ITI - Informatique, Logistique, Gestion',
-    description: "D\u00e9couvrez les formations de l'Institut ITI \u00e0 Tanger : Technicien Sp\u00e9cialis\u00e9 en Logistique et Gestion, Programmation Web, Comptabilit\u00e9, Bureautique. Dipl\u00f4mes accr\u00e9dit\u00e9s.",
+    title: t('seo.formationsTitle'),
+    description: t('seo.formationsDescription'),
     canonical: 'https://institut-iti.ma/formations',
   });
-  const [activeCategory, setActiveCategory] = useState('Toutes');
-  const [categories, setCategories] = useState(['Toutes']);
+
+  const [activeCategoryId, setActiveCategoryId] = useState('ALL');
+  const [categories, setCategories] = useState([]);
   const [formations, setFormations] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +30,7 @@ const Formations = () => {
           formationService.getAll()
         ]);
         
-        setCategories(['Toutes', ...catRes.data.data.map(c => c.name)]);
+        setCategories(catRes.data.data);
         setFormations(formRes.data.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -37,9 +43,9 @@ const Formations = () => {
   }, []);
 
   const filteredFormations = useMemo(() => {
-    if (activeCategory === 'Toutes') return formations;
-    return formations.filter(f => f.category?.name === activeCategory);
-  }, [activeCategory, formations]);
+    if (activeCategoryId === 'ALL') return formations;
+    return formations.filter(f => f.category?.id === activeCategoryId);
+  }, [activeCategoryId, formations]);
 
   if (loading) {
     return (
@@ -69,8 +75,8 @@ const Formations = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-transparent flex items-center px-6 md:px-12">
           <div className="max-w-7xl mx-auto w-full px-6 md:px-8">
             <div className="max-w-2xl text-white">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4">Nos Programmes Académiques</h1>
-              <p className="text-sm sm:text-base md:text-lg text-white opacity-90">Construisez votre avenir avec une expertise technique et une rigueur académique de premier plan.</p>
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4">{t('formations.heroTitle')}</h1>
+              <p className="text-sm sm:text-base md:text-lg text-white opacity-90">{t('formations.heroSubtitle')}</p>
             </div>
           </div>
         </div>
@@ -91,30 +97,47 @@ const Formations = () => {
           whileInView="show"
           viewport={{ once: true, amount: 0.35 }}
         >
-          {categories.map((cat) => (
-            <motion.button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2 rounded-full font-label-md transition-all uppercase text-xs tracking-widest ${
-                activeCategory === cat
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'bg-white text-primary border border-primary hover:bg-primary/5'
-              }`}
-              variants={fadeUp}
-              whileHover={buttonMotion.whileHover}
-              whileTap={buttonMotion.whileTap}
-            >
-              {cat}
-            </motion.button>
-          ))}
+          <motion.button
+            key="ALL"
+            onClick={() => setActiveCategoryId('ALL')}
+            className={`px-6 py-2 rounded-full font-label-md transition-all uppercase text-xs tracking-widest ${
+              activeCategoryId === 'ALL'
+                ? 'bg-primary text-white shadow-lg'
+                : 'bg-white text-primary border border-primary hover:bg-primary/5'
+            }`}
+            variants={fadeUp}
+            whileHover={buttonMotion.whileHover}
+            whileTap={buttonMotion.whileTap}
+          >
+            {t('formations.allCategories')}
+          </motion.button>
+          {categories.map((cat) => {
+            const catName = getLocalized(cat.name, currentLang);
+            return (
+              <motion.button
+                key={cat.id}
+                onClick={() => setActiveCategoryId(cat.id)}
+                className={`px-6 py-2 rounded-full font-label-md transition-all uppercase text-xs tracking-widest ${
+                  activeCategoryId === cat.id
+                    ? 'bg-primary text-white shadow-lg'
+                    : 'bg-white text-primary border border-primary hover:bg-primary/5'
+                }`}
+                variants={fadeUp}
+                whileHover={buttonMotion.whileHover}
+                whileTap={buttonMotion.whileTap}
+              >
+                {catName}
+              </motion.button>
+            );
+          })}
         </motion.div>
       </motion.div>
 
       {/* Formations Grid */}
       <div className="max-w-7xl mx-auto px-6 md:px-8">
-        {categories.slice(1).map((catName) => {
-          const catFormations = filteredFormations.filter(f => f.category?.name === catName);
-          return <CategorySection key={catName} title={catName} formations={catFormations} />;
+        {categories.map((cat) => {
+          const catFormations = filteredFormations.filter(f => f.category?.id === cat.id);
+          return <CategorySection key={cat.id} title={cat.name} formations={catFormations} />;
         })}
       </div>
     </div>

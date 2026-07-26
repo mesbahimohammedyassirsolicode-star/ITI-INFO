@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { 
   BarChart3, 
   LogOut,
@@ -6,14 +8,24 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import { authService } from '../../services/api';
 import itiLogo from '../../assets/iti-logo.png';
 
 const Sidebar = ({ activeTab = 'formations' }) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    if (window.confirm(t('admin.topbar.logoutConfirm'))) {
+      await authService.logout();
+      navigate('/login');
+    }
+  };
 
   const menuItems = [
-    { id: 'formations', label: 'Formations', icon: GraduationCap, path: '/admin/formations' },
-    { id: 'analytics', label: 'Analytiques', icon: BarChart3, path: '/admin/analytics' },
+    { id: 'formations', label: t('admin.sidebar.formations'), icon: GraduationCap, path: '/admin/formations' },
+    { id: 'analytics', label: t('admin.sidebar.analytics'), icon: BarChart3, path: '/admin/analytics' },
   ];
 
   const sidebarContent = (
@@ -56,9 +68,12 @@ const Sidebar = ({ activeTab = 'formations' }) => {
       </nav>
 
       <div className="p-4 border-t border-slate-800">
-        <button className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-red-500/10 hover:text-red-500 transition-all duration-200">
+        <button 
+          onClick={handleLogout}
+          className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-red-500/10 hover:text-red-500 transition-all duration-200"
+        >
           <LogOut className="w-5 h-5" />
-          Déconnexion
+          {t('admin.sidebar.logout')}
         </button>
       </div>
     </>

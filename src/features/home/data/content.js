@@ -2,43 +2,77 @@ export const trainingPrograms = [
   {
     id: 'programmation-web',
     icon: 'code_blocks',
-    title: 'Full Stack Web Development',
-    description: 'Learn modern frontend and backend development with practical projects and real deployment workflows.',
-    duration: '6 months',
-    level: 'Beginner',
+    title: {
+      fr: 'Développement Web Full Stack',
+      en: 'Full Stack Web Development'
+    },
+    description: {
+      fr: 'Apprenez le développement moderne frontend et backend avec des projets pratiques.',
+      en: 'Learn modern frontend and backend development with practical projects.'
+    },
+    duration: {
+      fr: '6 mois',
+      en: '6 months'
+    },
+    level: {
+      fr: 'Débutant',
+      en: 'Beginner'
+    },
   },
   {
     id: 'comptabilite',
     icon: 'query_stats',
-    title: 'Data Analytics Fundamentals',
-    description: 'Build core analytics skills from data cleaning to dashboards and actionable insights for business use.',
-    duration: '4 months',
-    level: 'Intermediate',
-  },
-  {
-    id: 'logiciels-comptables',
-    icon: 'security',
-    title: 'Cybersecurity Essentials',
-    description: 'Understand network security, threat prevention, and secure system practices with guided labs.',
-    duration: '5 months',
-    level: 'Beginner',
-  },
+    title: {
+      fr: 'Fondamentaux de la Comptabilité',
+      en: 'Data Analytics Fundamentals'
+    },
+    description: {
+      fr: 'Développez des compétences clés en gestion comptable et financière.',
+      en: 'Build core analytics skills from data cleaning to dashboards.'
+    },
+    duration: {
+      fr: '4 mois',
+      en: '4 months'
+    },
+    level: {
+      fr: 'Intermédiaire',
+      en: 'Intermediate'
+    },
+  }
 ];
 
 export const whyChooseUs = [
   {
     icon: 'build',
-    title: 'Practical Training',
-    description: 'Hands-on sessions designed around real skills needed by employers.',
+    title: {
+      fr: 'Formation Pratique',
+      en: 'Practical Training'
+    },
+    description: {
+      fr: 'Ateliers axés sur les compétences réelles recherchées par les employeurs.',
+      en: 'Hands-on sessions designed around real skills needed by employers.'
+    },
   },
   {
     icon: 'deployed_code',
-    title: 'Real Projects',
-    description: 'Work on project-based assignments that simulate real-world environments.',
+    title: {
+      fr: 'Projets Réels',
+      en: 'Real Projects'
+    },
+    description: {
+      fr: 'Travailler sur des projets simulant des environnements réels.',
+      en: 'Work on project-based assignments that simulate real-world environments.'
+    },
   },
   {
     icon: 'school',
-    title: 'Experienced Mentors',
-    description: 'Learn with instructors who combine teaching skills and industry experience.',
+    title: {
+      fr: 'Formateurs Expérimentés',
+      en: 'Experienced Mentors'
+    },
+    description: {
+      fr: 'Apprenez avec des instructeurs qui allient pédagogie et expérience.',
+      en: 'Learn with instructors who combine teaching skills and industry experience.'
+    },
   },
 ];

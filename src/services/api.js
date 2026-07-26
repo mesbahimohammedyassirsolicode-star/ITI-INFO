@@ -2,8 +2,8 @@ import rawFormations from '../data/formations.json';
 
 const AUTH_TOKEN_KEY = 'admin_token';
 const AUTH_USER_KEY = 'admin_user';
-const STORAGE_FORMATIONS_KEY = 'iti_static_formations';
-const STORAGE_INSCRIPTIONS_KEY = 'iti_static_inscriptions';
+const STORAGE_FORMATIONS_KEY = 'iti_static_formations_v2';
+const STORAGE_INSCRIPTIONS_KEY = 'iti_static_inscriptions_v2';
 const staticDelayMs = 220;
 
 const sleep = (delay = staticDelayMs) =>
@@ -11,29 +11,30 @@ const sleep = (delay = staticDelayMs) =>
 
 const response = (data) => ({ data: { data } });
 
-const categoriesSeed = [
-    { id: 'cat-diplome', name: 'Diplôme' },
-    { id: 'cat-continue', name: 'Formations continues' },
-    { id: 'cat-pratique', name: 'Formations pratiques' }
+export const categoriesSeed = [
+    { id: 'cat-diplome', name: { fr: 'Diplôme', en: 'Diploma' } },
+    { id: 'cat-continue', name: { fr: 'Formations continues', en: 'Continuing Education' } },
+    { id: 'cat-pratique', name: { fr: 'Formations pratiques', en: 'Practical Training' } }
 ];
 
 const toInitialFormations = () =>
     rawFormations.map((item, index) => {
+        const itemCategoryName = typeof item.category === 'object' ? item.category.fr : item.category;
         const category =
-            categoriesSeed.find((cat) => cat.name === item.category) ||
+            categoriesSeed.find((cat) => cat.name.fr === itemCategoryName) ||
             categoriesSeed[0];
 
         return {
             id: item.id,
             title: item.title,
             description: item.description,
-            duration: item.duration || '3 mois',
-            condition: item.subCategory || 'Niveau bac ou expérience équivalente',
+            duration: item.duration || { fr: '3 mois', en: '3 months' },
+            condition: item.subCategory || { fr: 'Niveau bac ou expérience équivalente', en: 'High School Diploma or equivalent experience' },
             category,
             image:
                 item.image ||
                 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop',
-            opportunities: item.opportunities || [],
+            opportunities: item.opportunities || { fr: [], en: [] },
             created_at: new Date(Date.now() - index * 86400000).toISOString()
         };
     });
@@ -98,7 +99,8 @@ const buildStats = (inscriptions) => {
     const todayCount = inscriptions.filter((item) => item.created_at.slice(0, 10) === today).length;
 
     const groupedByFormation = inscriptions.reduce((acc, item) => {
-        const formationTitle = item.formation?.title || 'Autres';
+        const titleObj = item.formation?.title;
+        const formationTitle = typeof titleObj === 'object' ? (titleObj.fr || titleObj.en) : (titleObj || 'Autres');
         acc[formationTitle] = (acc[formationTitle] || 0) + 1;
         return acc;
     }, {});
@@ -203,9 +205,10 @@ export const adminService = {
         const rows = getInscriptionsStore();
         const header = 'Nom,Email,Telephone,Formation,Date\n';
         const body = rows
-            .map((item) =>
-                `"${item.name}","${item.email}","${item.phone}","${item.formation?.title || ''}","${item.created_at}"`
-            )
+            .map((item) => {
+                const titleStr = typeof item.formation?.title === 'object' ? (item.formation.title.fr || item.formation.title.en) : (item.formation?.title || '');
+                return `"${item.name}","${item.email}","${item.phone}","${titleStr}","${item.created_at}"`;
+            })
             .join('\n');
         return { data: `${header}${body}` };
     },
@@ -219,15 +222,15 @@ export const adminService = {
         const category = categoriesSeed.find((cat) => cat.id === data.category_id) || categoriesSeed[0];
         const newFormation = {
             id: `form-${Date.now()}`,
-            title: data.title,
-            description: data.description,
-            duration: data.duration,
-            condition: data.condition,
+            title: typeof data.title === 'string' ? { fr: data.title, en: data.title } : data.title,
+            description: typeof data.description === 'string' ? { fr: data.description, en: data.description } : data.description,
+            duration: typeof data.duration === 'string' ? { fr: data.duration, en: data.duration } : data.duration,
+            condition: typeof data.condition === 'string' ? { fr: data.condition, en: data.condition } : data.condition,
             category,
             image:
                 data.image ||
                 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop',
-            opportunities: [],
+            opportunities: { fr: [], en: [] },
             created_at: new Date().toISOString()
         };
         formations.unshift(newFormation);
@@ -242,10 +245,10 @@ export const adminService = {
             String(item.id) === String(id)
                 ? {
                       ...item,
-                      title: data.title,
-                      description: data.description,
-                      duration: data.duration,
-                      condition: data.condition,
+                      title: typeof data.title === 'string' ? { fr: data.title, en: data.title } : data.title,
+                      description: typeof data.description === 'string' ? { fr: data.description, en: data.description } : data.description,
+                      duration: typeof data.duration === 'string' ? { fr: data.duration, en: data.duration } : data.duration,
+                      condition: typeof data.condition === 'string' ? { fr: data.condition, en: data.condition } : data.condition,
                       image: data.image || item.image,
                       category
                   }

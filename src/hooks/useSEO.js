@@ -1,10 +1,14 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Custom hook to set per-page SEO meta tags dynamically.
  * Manipulates document.title, meta description, canonical, and OG tags.
+ * Reacts to language switches.
  */
 export default function useSEO({ title, description, canonical, ogImage }) {
+  const { i18n } = useTranslation();
+
   useEffect(() => {
     // Set document title
     if (title) {
@@ -57,7 +61,7 @@ export default function useSEO({ title, description, canonical, ogImage }) {
       // Restore default title on unmount
       document.title = 'Institut ITI Tanger | Formations Professionnelles en Informatique & Gestion';
     };
-  }, [title, description, canonical, ogImage]);
+  }, [title, description, canonical, ogImage, i18n.language]);
 }
 
 function setMetaProperty(property, content) {

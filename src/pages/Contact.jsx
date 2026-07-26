@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { contactService } from '../services/api';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
 import useSEO from '../hooks/useSEO';
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   useSEO({
-    title: "Contactez l'Institut ITI Tanger | Admissions & Renseignements",
-    description: "Contactez l'Institut ITI \u00e0 Tanger pour vos questions sur les formations et admissions. T\u00e9l\u00e9phone: 05 39 93 95 37. E-mail: instituttrans@gmail.com. Adresse: 42, Rue de F\u00e8s, Tanger.",
+    title: t('seo.contactTitle'),
+    description: t('seo.contactDescription'),
     canonical: 'https://institut-iti.ma/contact',
   });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,10 +34,10 @@ const Contact = () => {
 
     try {
       await contactService.create(formData);
-      setStatus({ type: 'success', message: 'Message envoyé avec succès' });
+      setStatus({ type: 'success', message: t('contact.successMessage') });
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      const errorMsg = error.response?.data?.message || 'Une erreur est survenue. Veuillez réessayer.';
+      const errorMsg = error.response?.data?.message || t('contact.errorMessage');
       setStatus({ type: 'error', message: errorMsg });
     } finally {
       setLoading(false);
@@ -50,9 +54,9 @@ const Contact = () => {
         animate="show"
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4">Contactez-nous</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4">{t('contact.title')}</h1>
           <p className="text-sm sm:text-base max-w-2xl mx-auto opacity-80">
-            Vous avez des questions sur nos programmes ou le processus d'admission ? Contactez-nous, nous serons ravis de vous aider.
+            {t('contact.subtitle')}
           </p>
         </div>
       </motion.section>
@@ -74,7 +78,7 @@ const Contact = () => {
           >
             {/* Contact Info */}
             <div className="space-y-12">
-              <h2 className="font-headline-lg text-primary">Restons en contact</h2>
+              <h2 className="font-headline-lg text-primary">{t('contact.stayInTouch')}</h2>
 
               <div className="space-y-8">
                 <motion.div className="flex items-start gap-6 group" variants={fadeUp}>
@@ -82,7 +86,7 @@ const Contact = () => {
                     <span className="material-symbols-outlined text-3xl">location_on</span>
                   </div>
                   <div>
-                    <h4 className="font-headline-md text-primary mb-1 uppercase text-sm tracking-widest">Notre Campus</h4>
+                    <h4 className="font-headline-md text-primary mb-1 uppercase text-sm tracking-widest">{t('contact.ourCampus')}</h4>
                     <p className="text-on-surface-variant">42, Rue de Fès – Tanger, Maroc</p>
                   </div>
                 </motion.div>
@@ -92,7 +96,7 @@ const Contact = () => {
                     <span className="material-symbols-outlined text-3xl">call</span>
                   </div>
                   <div>
-                    <h4 className="font-headline-md text-primary mb-1 uppercase text-sm tracking-widest">Lignes Directes</h4>
+                    <h4 className="font-headline-md text-primary mb-1 uppercase text-sm tracking-widest">{t('contact.directLines')}</h4>
                     <p className="text-on-surface-variant font-bold">05 39 93 95 37</p>
                     <p className="text-on-surface-variant font-bold">06 68 43 48 95</p>
                   </div>
@@ -103,7 +107,7 @@ const Contact = () => {
                     <span className="material-symbols-outlined text-3xl">mail</span>
                   </div>
                   <div>
-                    <h4 className="font-headline-md text-primary mb-1 uppercase text-sm tracking-widest">Écrivez-nous</h4>
+                    <h4 className="font-headline-md text-primary mb-1 uppercase text-sm tracking-widest">{t('contact.writeUs')}</h4>
                     <p className="text-on-surface-variant">instituttrans@gmail.com</p>
                   </div>
                 </motion.div>
@@ -132,7 +136,7 @@ const Contact = () => {
               className="bg-white p-6 md:p-10 rounded-3xl shadow-xl border border-gray-100"
               variants={fadeUp}
             >
-              <h3 className="font-headline-md text-primary mb-8">Envoyez-nous un message</h3>
+              <h3 className="font-headline-md text-primary mb-8">{t('contact.formTitle')}</h3>
               {status.message && (
                 <div className={`mb-8 p-4 rounded-xl text-sm font-bold uppercase tracking-widest ${status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                   {status.message}
@@ -141,7 +145,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">Nom Complet</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('contact.fullName')}</label>
                     <input
                       name="name"
                       value={formData.name}
@@ -149,11 +153,11 @@ const Contact = () => {
                       required
                       type="text"
                       className="w-full bg-surface-container-low border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none transition-all"
-                      placeholder="ex: Ahmed Saïd"
+                      placeholder={t('contact.fullNamePlaceholder')}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">Adresse E-mail</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('contact.emailAddress')}</label>
                     <input
                       name="email"
                       value={formData.email}
@@ -161,12 +165,12 @@ const Contact = () => {
                       required
                       type="email"
                       className="w-full bg-surface-container-low border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none transition-all"
-                      placeholder="ahmed@exemple.com"
+                      placeholder={t('contact.emailPlaceholder')}
                     />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-primary uppercase tracking-widest block">Message</label>
+                  <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('contact.message')}</label>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -174,7 +178,7 @@ const Contact = () => {
                     required
                     rows="5"
                     className="w-full bg-surface-container-low border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none transition-all"
-                    placeholder="Votre message ici..."
+                    placeholder={t('contact.messagePlaceholder')}
                   ></textarea>
                 </div>
                 <MagneticHover>
@@ -183,7 +187,7 @@ const Contact = () => {
                     type="submit"
                     className="w-full bg-secondary text-white font-black py-5 rounded-xl shadow-lg hover:brightness-110 active:scale-95 transition-all uppercase tracking-widest disabled:opacity-50"
                   >
-                    {loading ? 'Envoi en cours...' : 'Envoyer le message'}
+                    {loading ? t('contact.sending') : t('contact.sendMessage')}
                   </motion.button>
                 </MagneticHover>
               </form>

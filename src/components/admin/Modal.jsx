@@ -1,7 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { X, Mail, Phone, Calendar, MessageSquare, GraduationCap, User } from 'lucide-react';
+import { getLocalized } from '../../utils/i18nHelper';
 
 const Modal = ({ isOpen, onClose, title, children, showFooter = true }) => {
+  const { t } = useTranslation();
   if (!isOpen) return null;
 
   return (
@@ -32,7 +35,7 @@ const Modal = ({ isOpen, onClose, title, children, showFooter = true }) => {
               onClick={onClose}
               className="px-6 py-2.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
             >
-              Fermer
+              {t('admin.modal.close')}
             </button>
           </div>
         )}
@@ -42,7 +45,11 @@ const Modal = ({ isOpen, onClose, title, children, showFooter = true }) => {
 };
 
 export const InscriptionDetails = ({ inscription }) => {
+  const { t, i18n } = useTranslation();
   if (!inscription) return null;
+
+  const currentLang = i18n.language || 'fr';
+  const formationTitle = getLocalized(inscription.formation?.title, currentLang);
 
   const detailItem = (Icon, label, value) => (
     <div className="flex gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary/20 transition-colors">
@@ -58,10 +65,10 @@ export const InscriptionDetails = ({ inscription }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {detailItem(User, "Nom Complet", inscription.name)}
-      {detailItem(Mail, "Adresse Email", inscription.email)}
-      {detailItem(Phone, "Numéro de Téléphone", inscription.phone)}
-      {detailItem(Calendar, "Date d'inscription", new Date(inscription.created_at).toLocaleDateString('fr-FR', {
+      {detailItem(User, t('admin.modal.fullName'), inscription.name)}
+      {detailItem(Mail, t('admin.modal.emailAddress'), inscription.email)}
+      {detailItem(Phone, t('admin.modal.phoneNumber'), inscription.phone)}
+      {detailItem(Calendar, t('admin.modal.registrationDate'), new Date(inscription.created_at).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'fr-FR', {
         day: '2-digit',
         month: 'long',
         year: 'numeric',
@@ -69,16 +76,16 @@ export const InscriptionDetails = ({ inscription }) => {
         minute: '2-digit'
       }))}
       <div className="md:col-span-2">
-        {detailItem(GraduationCap, "Formation Choisie", inscription.formation?.title || 'N/A')}
+        {detailItem(GraduationCap, t('admin.modal.chosenFormation'), formationTitle || 'N/A')}
       </div>
       <div className="md:col-span-2">
         <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
           <div className="flex items-center gap-2 mb-3 text-primary">
             <MessageSquare className="w-5 h-5" />
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Message / Note</p>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">{t('admin.modal.messageNote')}</p>
           </div>
           <p className="text-slate-700 leading-relaxed italic">
-            {inscription.message || "Aucun message fourni."}
+            {inscription.message || t('admin.modal.noMessage')}
           </p>
         </div>
       </div>

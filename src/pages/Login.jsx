@@ -1,13 +1,22 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { authService } from '../services/api';
+import useSEO from '../hooks/useSEO';
 
 const Login = () => {
+    const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+
+    useSEO({
+        title: t('seo.loginTitle'),
+        description: t('seo.loginDescription'),
+        canonical: 'https://institut-iti.ma/login',
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +28,7 @@ const Login = () => {
             navigate('/admin/formations');
         } catch (err) {
             console.error(err);
-            setError(err.message || 'Une erreur est survenue lors de la connexion.');
+            setError(t('login.invalidCredentials'));
         } finally {
             setLoading(false);
         }
@@ -34,12 +43,10 @@ const Login = () => {
                     </div>
                 </div>
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                    Connexion Admin
+                    {t('login.title')}
                 </h2>
                 <p className="mt-2 text-center text-sm text-gray-600">
-                    Institut TRANS - Panel d'administration
-                </p>
-                <p className="mt-1 text-center text-xs text-gray-500">
+                    {t('login.subtitle')}
                 </p>
             </div>
 
@@ -63,7 +70,7 @@ const Login = () => {
 
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                                Adresse Email
+                                {t('login.email')}
                             </label>
                             <div className="mt-1">
                                 <input
@@ -81,7 +88,7 @@ const Login = () => {
 
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                                Mot de passe
+                                {t('login.password')}
                             </label>
                             <div className="mt-1">
                                 <input
@@ -103,7 +110,7 @@ const Login = () => {
                                 disabled={loading}
                                 className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
-                                {loading ? 'Connexion en cours...' : 'Se connecter'}
+                                {loading ? t('login.loggingIn') : t('login.loginButton')}
                             </button>
                         </div>
                     </form>

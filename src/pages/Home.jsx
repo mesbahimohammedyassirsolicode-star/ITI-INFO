@@ -1,17 +1,35 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import AnimatedCounter from '../components/AnimatedCounter';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
 import useSEO from '../hooks/useSEO';
 
 const Home = () => {
+  const { t } = useTranslation();
+
   useSEO({
-    title: 'Institut ITI Tanger | Formations Professionnelles en Informatique & Gestion',
-    description: "Formations professionnelles en informatique, logistique et gestion \u00e0 Tanger. Dipl\u00f4mes accr\u00e9dit\u00e9s par l'\u00c9tat depuis 1986. Inscrivez-vous pour la session 2026-2027.",
+    title: t('seo.homeTitle'),
+    description: t('seo.homeDescription'),
     canonical: 'https://institut-iti.ma/',
   });
+
+  const aboutItems = useMemo(() => [
+    { icon: 'school', title: t('home.about.item1Title'), description: t('home.about.item1Desc') },
+    { icon: 'groups', title: t('home.about.item2Title'), description: t('home.about.item2Desc') },
+    { icon: 'work', title: t('home.about.item3Title'), description: t('home.about.item3Desc') },
+    { icon: 'emoji_events', title: t('home.about.item4Title'), description: t('home.about.item4Desc') },
+  ], [t]);
+
+  const faqItems = useMemo(() => [
+    { q: t('home.faq.q1'), a: t('home.faq.a1') },
+    { q: t('home.faq.q2'), a: t('home.faq.a2') },
+    { q: t('home.faq.q3'), a: t('home.faq.a3') },
+    { q: t('home.faq.q4'), a: t('home.faq.a4') },
+    { q: t('home.faq.q5'), a: t('home.faq.a5') }
+  ], [t]);
 
   return (
     <div className="flex flex-col">
@@ -35,15 +53,25 @@ const Home = () => {
         </div>
         <div className="container mx-auto px-6 md:px-8 relative z-10 max-w-7xl">
           <div className="max-w-2xl text-white">
-            <span className="inline-block py-1 px-3 rounded-full bg-tertiary-container text-on-tertiary-container font-label-md mb-4 md:mb-6 uppercase tracking-widest text-[10px] md:text-xs">Inscriptions Ouvertes 2026</span>
-            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">Préparez votre carrière dès aujourd'hui</h1>
-            <p className="text-sm sm:text-base md:text-lg text-primary-fixed mb-6 md:mb-8 opacity-90 leading-relaxed">Rejoignez notre institut, <b>l’Institut Trans Informatique</b>. Créé en 1986, nous formons des générations de professionnels de l’informatique et de la gestion, avec des diplômes reconnus depuis 1992.</p>
+            <span className="inline-block py-1 px-3 rounded-full bg-tertiary-container text-on-tertiary-container font-label-md mb-4 md:mb-6 uppercase tracking-widest text-[10px] md:text-xs">
+              {t('home.hero.badge')}
+            </span>
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">
+              {t('home.hero.title')}
+            </h1>
+            <p className="text-sm sm:text-base md:text-lg text-primary-fixed mb-6 md:mb-8 opacity-90 leading-relaxed">
+              {t('home.hero.subtitle')}
+            </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <MagneticHover>
-                <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-6 md:px-8 py-3 md:py-4 rounded-xl font-headline-md shadow-lg hover:shadow-xl transform transition-all uppercase tracking-widest text-xs md:text-sm block text-center">Postuler Maintenant</Link>
+                <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-6 md:px-8 py-3 md:py-4 rounded-xl font-headline-md shadow-lg hover:shadow-xl transform transition-all uppercase tracking-widest text-xs md:text-sm block text-center">
+                  {t('home.hero.applyNow')}
+                </Link>
               </MagneticHover>
               <MagneticHover>
-                <Link to="/formations" className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-headline-md hover:bg-white/20 transition-all uppercase tracking-widest text-xs md:text-sm block text-center">Voir les Formations</Link>
+                <Link to="/formations" className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-headline-md hover:bg-white/20 transition-all uppercase tracking-widest text-xs md:text-sm block text-center">
+                  {t('home.hero.viewFormations')}
+                </Link>
               </MagneticHover>
             </div>
           </div>
@@ -74,17 +102,17 @@ const Home = () => {
               />
               <div className="absolute -bottom-6 -right-6 glass-card p-6 rounded-xl shadow-lg border-l-4 border-secondary">
                 <p className="text-secondary font-headline-xl mb-0"><AnimatedCounter value={38} suffix="+" /></p>
-                <p className="text-on-surface-variant font-label-md uppercase tracking-widest text-[10px]">Ans d'Excellence</p>
+                <p className="text-on-surface-variant font-label-md uppercase tracking-widest text-[10px]">{t('home.about.yearsLabel')}</p>
               </div>
             </div>
 
             <div>
-              <h2 className="font-headline-lg text-primary mb-6">Bâtir l'excellence depuis 1986</h2>
+              <h2 className="font-headline-lg text-primary mb-6">{t('home.about.title')}</h2>
               <p className="font-body-md text-on-surface-variant mb-6 leading-relaxed">
-                Fondée en 1986 au cœur de Tanger, l'Institut ITI (Institut Trans Informatique) s'est imposée comme une pierre angulaire de l'enseignement technique dans le Nord du Maroc. Notre mission est de fournir une formation professionnelle de haute qualité qui répond aux exigences évolutives du marché de l'emploi.
+                {t('home.about.paragraph1')}
               </p>
               <p className="font-body-md text-on-surface-variant mb-8 leading-relaxed">
-                Nous sommes fiers d'offrir un environnement d'apprentissage structuré où les compétences pratiques rencontrent la rigueur théorique, garantissant que nos diplômés sont prêts pour une carrière réussie.
+                {t('home.about.paragraph2')}
               </p>
               <motion.div
                 className="grid grid-cols-2 gap-4"
@@ -93,12 +121,7 @@ const Home = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                {[
-                  { icon: 'school', title: 'Diplômes Accrédités', description: 'Reconnus par l\'État depuis 1992' },
-                  { icon: 'groups', title: 'Encadrement Expert', description: 'Formateurs qualifiés et expérimentés' },
-                  { icon: 'work', title: 'Insertion Pro', description: 'Accompagnement vers l\'emploi' },
-                  { icon: 'emoji_events', title: 'Excellence', description: '38+ ans d\'expérience pédagogique' },
-                ].map((item, index) => (
+                {aboutItems.map((item, index) => (
                   <motion.div key={index} className="bg-surface-container-low rounded-xl p-4 text-center" variants={fadeUp}>
                     <span className="material-symbols-outlined text-3xl text-secondary mb-2">
                       {item.icon}
@@ -124,23 +147,25 @@ const Home = () => {
       >
         <div className="container mx-auto px-6 md:px-8 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="font-headline-lg text-primary mb-4">Nos Programmes Académiques</h2>
-            <p className="text-on-surface-variant max-w-2xl mx-auto">Découvrez un cursus conçu pour le monde moderne, combinant maîtrise technique et sens des affaires.</p>
+            <h2 className="font-headline-lg text-primary mb-4">{t('home.programsPreview.title')}</h2>
+            <p className="text-on-surface-variant max-w-2xl mx-auto">{t('home.programsPreview.subtitle')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             {/* Navigation & Logistique */}
             <motion.div
-              className="md:col-span-7 group relative overflow-hidden bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-8 border border-outline-variant/30"
-              whileHover={{ scale: 1.03, transition: { duration: 0.45, ease: 'easeInOut' } }}
+              className="md:col-span-12 group relative overflow-hidden bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-8 border border-outline-variant/30"
+              whileHover={{ scale: 1.01, transition: { duration: 0.45, ease: 'easeInOut' } }}
             >
               <div className="flex flex-col md:flex-row gap-8 items-center h-full">
                 <div className="md:w-1/2">
                   <span className="material-symbols-outlined text-4xl text-secondary mb-4">local_shipping</span>
-                  <h3 className="font-headline-md text-primary mb-3">Navigation & Logistique</h3>
-                  <p className="text-on-surface-variant font-body-md mb-4 text-sm">Devenez un expert en transit, douane et gestion des flux de transport nationaux et internationaux.</p>
-                  <Link to="/formations" className="text-secondary font-label-md flex items-center gap-2 group-hover:translate-x-2 transition-transform uppercase text-xs tracking-widest font-bold">En savoir plus <span className="material-symbols-outlined text-sm">arrow_forward</span></Link>
+                  <h3 className="font-headline-md text-primary mb-3">{t('home.programsPreview.logisticsTitle')}</h3>
+                  <p className="text-on-surface-variant font-body-md mb-4 text-sm">{t('home.programsPreview.logisticsDesc')}</p>
+                  <Link to="/formations" className="text-secondary font-label-md flex items-center gap-2 group-hover:translate-x-2 transition-transform uppercase text-xs tracking-widest font-bold">
+                    {t('home.programsPreview.learnMore')} <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                  </Link>
                 </div>
-                <div className="md:w-1/2 h-full">
+                <div className="md:w-1/2 h-full w-full">
                   <motion.img
                     className="rounded-lg h-48 w-full object-cover"
                     alt="Logistique"
@@ -168,32 +193,11 @@ const Home = () => {
       >
         <div className="container mx-auto px-6 md:px-8 max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="font-headline-lg text-primary mb-4">Questions Fréquentes</h2>
-            <p className="text-on-surface-variant max-w-2xl mx-auto">Retrouvez les réponses aux questions les plus posées sur l'Institut ITI, nos formations et le processus d'admission.</p>
+            <h2 className="font-headline-lg text-primary mb-4">{t('home.faq.title')}</h2>
+            <p className="text-on-surface-variant max-w-2xl mx-auto">{t('home.faq.subtitle')}</p>
           </div>
           <div className="space-y-4">
-            {[
-              {
-                q: "Quelles formations propose l'Institut ITI à Tanger ?",
-                a: "L'Institut ITI propose des diplômes de Technicien Spécialisé en Gestion de la Navigation & Logistique et en Gestion des Entreprises (2 ans), ainsi que des formations continues en Programmation Web (6 mois), Comptabilité (4 mois), Bureautique et Logiciels Comptables (SAGE, SAP)."
-              },
-              {
-                q: "L'Institut ITI est-il accrédité par l'État ?",
-                a: "Oui, l'Institut Trans Informatique (ITI) est un établissement de formation professionnelle accrédité par l'État marocain. Les diplômes délivrés sont reconnus officiellement et permettent une insertion professionnelle directe sur le marché du travail national et international."
-              },
-              {
-                q: "Comment s'inscrire pour la session 2026-2027 ?",
-                a: "Les inscriptions se font en ligne via notre formulaire de candidature sur le site. Remplissez vos informations personnelles, choisissez votre programme, et notre équipe d'admission vous contactera dans les 24 heures pour planifier votre entretien. Vous pouvez aussi nous appeler au 05 39 93 95 37."
-              },
-              {
-                q: "Quelle est la durée des formations à l'ITI ?",
-                a: "Les diplômes de Technicien Spécialisé durent 2 ans. Les formations continues varient de 4 mois (Comptabilité) à 6 mois (Programmation Web). Les formations pratiques en bureautique et logiciels comptables sont de courte durée, adaptées aux professionnels en activité."
-              },
-              {
-                q: "Où se trouve l'Institut ITI et comment les contacter ?",
-                a: "L'Institut ITI est situé au 42, Rue de Fès à Tanger, Maroc. Vous pouvez nous joindre par téléphone au 05 39 93 95 37 ou 06 68 43 48 95, par e-mail à instituttrans@gmail.com, ou via le formulaire de contact sur notre site."
-              }
-            ].map((item, index) => (
+            {faqItems.map((item, index) => (
               <motion.details
                 key={index}
                 className="group bg-white rounded-xl border border-outline-variant/30 shadow-sm hover:shadow-md transition-all"
@@ -227,14 +231,18 @@ const Home = () => {
               <div className="absolute bottom-0 right-0 w-96 h-96 border-4 border-white rounded-full translate-x-1/2 translate-y-1/2"></div>
             </div>
             <div className="relative z-10 max-w-2xl mx-auto">
-              <h2 className="font-headline-lg text-white mb-4 md:mb-6">Prêt à transformer votre carrière ?</h2>
-              <p className="font-body-lg text-white mb-6 md:mb-8 opacity-90">Inscrivez-vous dès aujourd'hui pour la session prochaine et bénéficiez de notre accompagnement vers l'emploi.</p>
+              <h2 className="font-headline-lg text-white mb-4 md:mb-6">{t('home.cta.title')}</h2>
+              <p className="font-body-lg text-white mb-6 md:mb-8 opacity-90">{t('home.cta.subtitle')}</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <MagneticHover>
-                  <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-6 md:px-8 py-3 md:py-4 rounded-xl font-black text-base md:text-lg transition-transform uppercase tracking-widest shadow-lg block text-center">S'INSCRIRE MAINTENANT</Link>
+                  <Link to="/inscription" className="bg-tertiary-container text-on-tertiary-container px-6 md:px-8 py-3 md:py-4 rounded-xl font-black text-base md:text-lg transition-transform uppercase tracking-widest shadow-lg block text-center">
+                    {t('home.cta.registerNow')}
+                  </Link>
                 </MagneticHover>
                 <MagneticHover>
-                  <Link to="/contact" className="bg-transparent border-2 border-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-white hover:text-secondary transition-colors duration-200 uppercase tracking-widest block text-center">NOUS CONTACTER</Link>
+                  <Link to="/contact" className="bg-transparent border-2 border-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-white hover:text-secondary transition-colors duration-200 uppercase tracking-widest block text-center">
+                    {t('home.cta.contactUs')}
+                  </Link>
                 </MagneticHover>
               </div>
             </div>

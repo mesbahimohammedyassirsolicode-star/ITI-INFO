@@ -1,57 +1,144 @@
 [
   {
     "id": "gestion-logistique",
-    "title": "Gestion de la navigation et logistique",
-    "category": "Diplôme",
-    "subCategory": "Diplôme de Technicien Spécialisé",
-    "duration": "2 ANS",
-    "description": "Maîtrisez les complexités des chaînes d'approvisionnement mondiales et des opérations organisationnelles dans une économie en évolution rapide.",
-    "opportunities": ["Agent de transit", "Déclarant en douane", "Responsable transport", "Gestionnaire de stock"],
+    "title": {
+      "fr": "Gestion de la navigation et logistique",
+      "en": "Navigation & Logistics Management"
+    },
+    "category": {
+      "fr": "Diplôme",
+      "en": "Diploma"
+    },
+    "subCategory": {
+      "fr": "Diplôme de Technicien Spécialisé",
+      "en": "Specialized Technician Diploma"
+    },
+    "duration": {
+      "fr": "2 ANS",
+      "en": "2 YEARS"
+    },
+    "description": {
+      "fr": "Maîtrisez les complexités des chaînes d'approvisionnement mondiales et des opérations organisationnelles dans une économie en évolution rapide.",
+      "en": "Master the complexities of global supply chains and organizational operations in a fast-evolving economy."
+    },
+    "opportunities": {
+      "fr": ["Agent de transit", "Déclarant en douane", "Responsable transport", "Gestionnaire de stock"],
+      "en": ["Transit Agent", "Customs Declarant", "Transport Manager", "Stock Manager"]
+    },
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBiz9y2UmG3coPkRiLZ8CULOyCXClEiSrqIPVRU7zsYsQxJVk2Ppf_ZNfWd0qMIHlcnwat1rsKsDQQ-Icp1C2hDIcErrY3l_ZBSqENTLCoQP1vVIx2br3fBAWoCgGWSQFkgIxCrgaX7b1FsClsO13s2_hymUMd02MiuTOHGAVfarj65gbOvkevpN_1uO1FAsHXmPOFFuHfGjKUtgCWsstM5hcnK0Z50u7do_UDeI133bJfmDXVyP8qkuieJY__S-hImen7z4Q4A2vA"
   },
   {
     "id": "gestion-entreprises",
-    "title": "Gestion des entreprises",
-    "category": "Diplôme",
-    "subCategory": "Diplôme de Technicien Spécialisé",
-    "duration": "2 ANS",
-    "description": "Leadership stratégique et compétences entrepreneuriales pour les chefs d'entreprise de demain.",
-    "opportunities": ["Assistant de gestion", "Employé administratif", "Comptable", "Chargé de clientèle", "Gestionnaire de clientèle"],
+    "title": {
+      "fr": "Gestion des entreprises",
+      "en": "Business Management"
+    },
+    "category": {
+      "fr": "Diplôme",
+      "en": "Diploma"
+    },
+    "subCategory": {
+      "fr": "Diplôme de Technicien Spécialisé",
+      "en": "Specialized Technician Diploma"
+    },
+    "duration": {
+      "fr": "2 ANS",
+      "en": "2 YEARS"
+    },
+    "description": {
+      "fr": "Leadership stratégique et compétences entrepreneuriales pour les chefs d'entreprise de demain.",
+      "en": "Strategic leadership and entrepreneurial skills for tomorrow's business leaders."
+    },
+    "opportunities": {
+      "fr": ["Assistant de gestion", "Employé administratif", "Comptable", "Chargé de clientèle", "Gestionnaire de clientèle"],
+      "en": ["Management Assistant", "Administrative Employee", "Accountant", "Customer Relations Officer", "Account Manager"]
+    },
     "image": "/images/gestion-entreprises.png"
   },
   {
     "id": "programmation-web",
-    "title": "Programmation & Création Web",
-    "category": "Formations continues",
-    "duration": "6 Mois",
-    "description": "Formation pratique et créative axée sur les technologies modernes du web.",
+    "title": {
+      "fr": "Programmation & Création Web",
+      "en": "Web Programming & Design"
+    },
+    "category": {
+      "fr": "Formations continues",
+      "en": "Continuing Education"
+    },
+    "duration": {
+      "fr": "6 Mois",
+      "en": "6 Months"
+    },
+    "description": {
+      "fr": "Formation pratique et créative axée sur les technologies modernes du web.",
+      "en": "Practical and creative training focused on modern web technologies."
+    },
     "technologies": ["HTML", "CSS", "JavaScript"],
-    "opportunities": ["Développeur web débutant", "Création de sites web", "Travail freelance"],
+    "opportunities": {
+      "fr": ["Développeur web débutant", "Création de sites web", "Travail freelance"],
+      "en": ["Junior Web Developer", "Website Creation", "Freelance Work"]
+    },
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBA2gyScZsd3-hC2m31wmkQLNZABOrnhAiufRB_947WfyLUXLWrCLB__JqJb4iqrXZymxLYsVV_EeCM0B519Be5aX6wXy25fHMx9GDgjYnuf-Yq-zGndtdWqEfrFz-Twg-cOSclxqtZcjW3nEcUYYdKrpypJc6CSUaXm73fixkyh4S57_VXhgiywtiJEvw_-5zdhHemAZDNtO_AZuCD6FMG1egCg9put3295ehfPE2pQJqhC30dMbmuKQlOSCbIOr_Yrh6JNYrQiG0"
   },
   {
     "id": "comptabilite",
-    "title": "Comptabilité",
-    "category": "Formations continues",
-    "duration": "4 Mois",
-    "description": "Maîtrisez les bases de la comptabilité générale et analytique pour les entreprises.",
-    "curriculum": ["Comptabilité générale", "Comptabilité des sociétés", "Comptabilité analytique"],
-    "opportunities": ["Responsable financier", "Comptable", "Commercial"],
+    "title": {
+      "fr": "Comptabilité",
+      "en": "Accounting"
+    },
+    "category": {
+      "fr": "Formations continues",
+      "en": "Continuing Education"
+    },
+    "duration": {
+      "fr": "4 Mois",
+      "en": "4 Months"
+    },
+    "description": {
+      "fr": "Maîtrisez les bases de la comptabilité générale et analytique pour les entreprises.",
+      "en": "Master the fundamentals of general and cost accounting for businesses."
+    },
+    "curriculum": {
+      "fr": ["Comptabilité générale", "Comptabilité des sociétés", "Comptabilité analytique"],
+      "en": ["General Accounting", "Corporate Accounting", "Cost Accounting"]
+    },
+    "opportunities": {
+      "fr": ["Responsable financier", "Comptable", "Commercial"],
+      "en": ["Financial Manager", "Accountant", "Sales Representative"]
+    },
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBiz9y2UmG3coPkRiLZ8CULOyCXClEiSrqIPVRU7zsYsQxJVk2Ppf_ZNfWd0qMIHlcnwat1rsKsDQQ-Icp1C2hDIcErrY3l_ZBSqENTLCoQP1vVIx2br3fBAWoCgGWSQFkgIxCrgaX7b1FsClsO13s2_hymUMd02MiuTOHGAVfarj65gbOvkevpN_1uO1FAsHXmPOFFuHfGjKUtgCWsstM5hcnK0Z50u7do_UDeI133bJfmDXVyP8qkuieJY__S-hImen7z4Q4A2vA"
   },
   {
     "id": "bureautique",
-    "title": "Bureautique",
-    "category": "Formations pratiques",
-    "description": "Maîtrisez les outils essentiels de l'entreprise moderne avec nos modules intensifs de courte durée.",
+    "title": {
+      "fr": "Bureautique",
+      "en": "Office Applications"
+    },
+    "category": {
+      "fr": "Formations pratiques",
+      "en": "Practical Training"
+    },
+    "description": {
+      "fr": "Maîtrisez les outils essentiels de l'entreprise moderne avec nos modules intensifs de courte durée.",
+      "en": "Master the essential tools of modern business with our intensive short modules."
+    },
     "tools": ["Word", "Excel", "PowerPoint", "Access"],
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBTJJNelJC-5dOTIetDUH2MTji6xFaweRrSqGOCoANWOyh1cFavKuGP_XnpeT3PwRyHru9I3UZqdTjm0f4vlOXllEKqvBFhTwq5b1kIiEWKHuT2n1osQ44Xq_AQb8Qp_tsjkknN9GoDbgihRvWg-Annv2YFBO7x3-DIVplMcSBh0_lbDzy4wZ9jLnFwTwqvAmmxueTP1IlxjRaWgHJx-gxKdkz3ezXGKcfFPyTEWUDR4IW6TdNQSTfFgd4DEfiI8cCKhHF99LSXsVw"
   },
   {
     "id": "logiciels-comptables",
-    "title": "Logiciels comptables (SAGE, SAP)",
-    "category": "Formations pratiques",
-    "description": "Formation sur les logiciels de gestion les plus utilisés en entreprise.",
+    "title": {
+      "fr": "Logiciels comptables (SAGE, SAP)",
+      "en": "Accounting Software (SAGE, SAP)"
+    },
+    "category": {
+      "fr": "Formations pratiques",
+      "en": "Practical Training"
+    },
+    "description": {
+      "fr": "Formation sur les logiciels de gestion les plus utilisés en entreprise.",
+      "en": "Training on the most widely used business management software."
+    },
     "software": [
       {"name": "SAGE", "level": "Expert"},
       {"name": "SAP", "level": "Pro"}

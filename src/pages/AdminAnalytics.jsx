@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { adminService } from '../services/api';
 import { 
   BarChart, 
@@ -8,20 +9,15 @@ import {
   CartesianGrid, 
   Tooltip, 
   ResponsiveContainer, 
-  LineChart, 
-  Line, 
   Cell,
   AreaChart,
   Area
 } from 'recharts';
 import { 
-  BarChart3, 
   TrendingUp, 
   Users, 
   Clock, 
-  Calendar,
   RefreshCw,
-  ArrowUpRight,
   Inbox,
   Activity,
   Layers
@@ -29,6 +25,7 @@ import {
 import Sidebar from '../components/admin/Sidebar';
 import Topbar from '../components/admin/Topbar';
 import StatsCard from '../components/admin/StatsCard';
+import useSEO from '../hooks/useSEO';
 
 const Skeleton = ({ className }) => (
   <div className={`animate-pulse bg-slate-200 rounded-xl ${className}`}></div>
@@ -56,20 +53,20 @@ const AnalyticsSkeleton = () => (
   </div>
 );
 
-const EmptyState = ({ message, onRetry }) => (
+const EmptyState = ({ message, onRetry, t }) => (
   <div className="flex flex-col items-center justify-center py-20 bg-white rounded-3xl border border-dashed border-slate-300">
     <div className="bg-slate-50 p-4 rounded-full mb-4">
       <Inbox className="w-12 h-12 text-slate-300" />
     </div>
-    <h3 className="text-lg font-semibold text-slate-900">Aucune donnée disponible</h3>
-    <p className="text-slate-500 mb-6 max-w-xs text-center">{message || "Il n'y a pas encore assez de données pour générer des statistiques."}</p>
+    <h3 className="text-lg font-semibold text-slate-900">{t('admin.analyticsPage.noDataTitle')}</h3>
+    <p className="text-slate-500 mb-6 max-w-xs text-center">{message || t('admin.analyticsPage.noDataDesc')}</p>
     {onRetry && (
       <button 
         onClick={onRetry}
         className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition-colors"
       >
         <RefreshCw className="w-4 h-4" />
-        Réessayer
+        {t('admin.analyticsPage.retry')}
       </button>
     )}
   </div>
@@ -95,9 +92,16 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 const AdminAnalytics = () => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'fr';
+
+  useSEO({
+    title: t('seo.adminAnalyticsTitle'),
+    description: t('seo.adminAnalyticsDescription'),
+  });
+
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchStats();
@@ -106,23 +110,21 @@ const AdminAnalytics = () => {
   const fetchStats = async () => {
     try {
       setLoading(true);
-      setError(null);
       const response = await adminService.getStats();
       setStats(response.data.data);
     } catch (err) {
       console.error("Error fetching analytics:", err);
-      setError("Impossible de charger les données analytiques.");
     } finally {
-      setTimeout(() => setLoading(false), 800); // Small delay for smooth transition
+      setTimeout(() => setLoading(false), 500);
     }
   };
 
   const chartColors = {
-    primary: '#6366f1', // Indigo
-    secondary: '#8b5cf6', // Violet
-    accent: '#f59e0b', // Amber
-    success: '#10b981', // Emerald
-    muted: '#94a3b8', // Slate 400
+    primary: '#6366f1',
+    secondary: '#8b5cf6',
+    accent: '#f59e0b',
+    success: '#10b981',
+    muted: '#94a3b8',
   };
 
   const hasData = stats && (stats.total > 0 || (stats.byFormation && stats.byFormation.length > 0));
@@ -132,7 +134,7 @@ const AdminAnalytics = () => {
       <Sidebar activeTab="analytics" />
 
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
-        <Topbar title="Analytiques" />
+        <Topbar title={t('admin.analyticsTitle')} />
 
         <div className="flex-1 overflow-y-auto p-4 md:p-10">
           <div className="max-w-6xl mx-auto">
@@ -141,10 +143,10 @@ const AdminAnalytics = () => {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold uppercase tracking-wider mb-3">
                   <Activity className="w-3 h-3" />
-                  Performances
+                  {t('admin.analyticsPage.badge')}
                 </div>
-                <h2 className="text-3xl font-black text-slate-900 tracking-tight">Tableau de Bord</h2>
-                <p className="text-slate-500 mt-1">Analyse approfondie des inscriptions et de la croissance.</p>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">{t('admin.analyticsPage.title')}</h2>
+                <p className="text-slate-500 mt-1">{t('admin.analyticsPage.subtitle')}</p>
               </div>
               <div className="flex items-center gap-3">
                 <button 
@@ -153,7 +155,7 @@ const AdminAnalytics = () => {
                   className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all shadow-sm disabled:opacity-50"
                 >
                   <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-                  Actualiser
+                  {t('admin.analyticsPage.refresh')}
                 </button>
               </div>
             </div>
@@ -161,14 +163,14 @@ const AdminAnalytics = () => {
             {loading ? (
               <AnalyticsSkeleton />
             ) : !hasData ? (
-              <EmptyState onRetry={fetchStats} />
+              <EmptyState onRetry={fetchStats} t={t} />
             ) : (
               <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
                 
                 {/* 1. Stats Cards Section */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   <StatsCard 
-                    title="Total Inscriptions" 
+                    title={t('admin.analyticsPage.totalInscriptions')} 
                     value={stats?.total || 0} 
                     icon={Users} 
                     color="primary"
@@ -176,7 +178,7 @@ const AdminAnalytics = () => {
                     trendValue="12"
                   />
                   <StatsCard 
-                    title="Inscriptions Aujourd'hui" 
+                    title={t('admin.analyticsPage.todayInscriptions')} 
                     value={stats?.today || 0} 
                     icon={Clock} 
                     color="success"
@@ -184,7 +186,7 @@ const AdminAnalytics = () => {
                     trendValue="8"
                   />
                   <StatsCard 
-                    title="Taux de Croissance" 
+                    title={t('admin.analyticsPage.growthRate')} 
                     value="24.5%" 
                     icon={TrendingUp} 
                     color="purple"
@@ -193,16 +195,16 @@ const AdminAnalytics = () => {
                   />
                 </div>
 
-                {/* 2. Main Trend Chart (Middle) */}
+                {/* 2. Main Trend Chart */}
                 <div className="bg-white p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900">Activité des Inscriptions</h3>
-                      <p className="text-sm text-slate-500 mt-1">Nombre d'inscriptions quotidiennes sur les 14 derniers jours</p>
+                      <h3 className="text-xl font-bold text-slate-900">{t('admin.analyticsPage.activityTitle')}</h3>
+                      <p className="text-sm text-slate-500 mt-1">{t('admin.analyticsPage.activitySubtitle')}</p>
                     </div>
                     <div className="flex items-center gap-2 bg-slate-50 p-1 rounded-xl border border-slate-100">
-                      <button className="px-3 py-1.5 text-xs font-bold bg-white shadow-sm rounded-lg text-indigo-600">Ligne</button>
-                      <button className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-slate-600">Aire</button>
+                      <button className="px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-slate-600">{t('admin.analyticsPage.chartLine')}</button>
+                      <button className="px-3 py-1.5 text-xs font-bold bg-white shadow-sm rounded-lg text-indigo-600">{t('admin.analyticsPage.chartArea')}</button>
                     </div>
                   </div>
                   
@@ -224,7 +226,7 @@ const AdminAnalytics = () => {
                           dy={10}
                           tickFormatter={(str) => {
                             const date = new Date(str);
-                            return date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
+                            return date.toLocaleDateString(currentLang === 'en' ? 'en-US' : 'fr-FR', { day: '2-digit', month: 'short' });
                           }}
                         />
                         <YAxis axisLine={false} tickLine={false} tick={{ fill: chartColors.muted, fontSize: 11, fontWeight: 500 }} />
@@ -236,7 +238,7 @@ const AdminAnalytics = () => {
                           strokeWidth={4}
                           fillOpacity={1} 
                           fill="url(#colorTrend)" 
-                          name="Inscriptions"
+                          name={t('admin.analyticsPage.inscriptionsLabel')}
                           animationDuration={2000}
                           dot={{ r: 0 }}
                           activeDot={{ r: 6, fill: chartColors.primary, stroke: '#fff', strokeWidth: 3, shadow: '0 0 10px rgba(0,0,0,0.1)' }}
@@ -246,13 +248,13 @@ const AdminAnalytics = () => {
                   </div>
                 </div>
 
-                {/* 3. Formations Chart (Bottom) */}
+                {/* 3. Formations Chart */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                   <div className="lg:col-span-2 bg-white p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
                     <div className="flex items-center justify-between mb-8">
                       <div>
-                        <h3 className="text-xl font-bold text-slate-900">Inscriptions par Formation</h3>
-                        <p className="text-sm text-slate-500 mt-1">Répartition de la demande actuelle</p>
+                        <h3 className="text-xl font-bold text-slate-900">{t('admin.analyticsPage.inscriptionsByFormation')}</h3>
+                        <p className="text-sm text-slate-500 mt-1">{t('admin.analyticsPage.currentDemand')}</p>
                       </div>
                       <div className="bg-indigo-50 p-2.5 rounded-2xl">
                         <Layers className="w-5 h-5 text-indigo-600" />
@@ -278,7 +280,7 @@ const AdminAnalytics = () => {
                             dataKey="count" 
                             radius={[10, 10, 10, 10]} 
                             barSize={32} 
-                            name="Inscriptions"
+                            name={t('admin.analyticsPage.inscriptionsLabel')}
                             animationDuration={1500}
                           >
                             {(stats?.byFormation || []).map((entry, index) => (
@@ -294,12 +296,12 @@ const AdminAnalytics = () => {
                     </div>
                   </div>
 
-                  {/* Summary Sidebar (Right of Bar Chart) */}
+                  {/* Summary Sidebar */}
                   <div className="bg-slate-900 p-8 rounded-[2rem] shadow-xl text-white overflow-hidden relative">
                     <div className="relative z-10">
                       <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
                         <Activity className="w-5 h-5 text-indigo-400" />
-                        Top Formations
+                        {t('admin.analyticsPage.topFormations')}
                       </h3>
                       <div className="space-y-5">
                         {(stats?.byFormation || [])
@@ -327,14 +329,13 @@ const AdminAnalytics = () => {
                             <TrendingUp className="w-6 h-6 text-emerald-400" />
                           </div>
                           <div>
-                            <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Performance Globale</p>
-                            <p className="text-xl font-black text-white">+18.4% <span className="text-xs font-medium text-slate-500 ml-1">vs mois dernier</span></p>
+                            <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">{t('admin.analyticsPage.overallPerformance')}</p>
+                            <p className="text-xl font-black text-white">+18.4% <span className="text-xs font-medium text-slate-500 ml-1">{t('admin.analyticsPage.vsLastMonth')}</span></p>
                           </div>
                         </div>
                       </div>
                     </div>
                     
-                    {/* Decorative Background Element */}
                     <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl"></div>
                   </div>
                 </div>
@@ -349,4 +350,3 @@ const AdminAnalytics = () => {
 };
 
 export default AdminAnalytics;
-

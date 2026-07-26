@@ -1,8 +1,13 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import FormationCard from './FormationCard';
 import { fadeUp, staggerContainer } from '../animations/motionVariants';
+import { getLocalized } from '../utils/i18nHelper';
 
 const CategorySection = ({ title, formations }) => {
+  const { i18n } = useTranslation();
+  const titleText = getLocalized(title, i18n.language);
+
   if (!formations || formations.length === 0) return null;
 
   return (
@@ -15,7 +20,7 @@ const CategorySection = ({ title, formations }) => {
     >
       <div className="flex items-center gap-4 mb-8">
         <div className="h-8 w-2 bg-secondary"></div>
-        <h2 className="font-headline-lg text-primary uppercase tracking-tight">{title}</h2>
+        <h2 className="font-headline-lg text-primary uppercase tracking-tight">{titleText}</h2>
       </div>
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"

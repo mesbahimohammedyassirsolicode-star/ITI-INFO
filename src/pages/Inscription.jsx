@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { formationService, inscriptionService } from '../services/api';
 import MagneticHover from '../components/MagneticHover';
 import { fadeUp, imageReveal, staggerContainer } from '../animations/motionVariants';
 import useSEO from '../hooks/useSEO';
+import { getLocalized } from '../utils/i18nHelper';
 
 const Inscription = () => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'fr';
+
   useSEO({
-    title: 'Inscription 2026 - Institut ITI Tanger | Postulez en Ligne',
-    description: "Inscrivez-vous \u00e0 l'Institut ITI \u00e0 Tanger pour la session 2026-2027. Remplissez le formulaire de candidature en ligne. Processus d'admission transparent en 3 \u00e9tapes.",
+    title: t('seo.inscriptionTitle'),
+    description: t('seo.inscriptionDescription'),
     canonical: 'https://institut-iti.ma/inscription',
   });
+
   const location = useLocation();
   const [formations, setFormations] = useState([]);
   const [formData, setFormData] = useState({
@@ -47,7 +53,7 @@ const Inscription = () => {
 
     try {
       await inscriptionService.create(formData);
-      setStatus({ type: 'success', message: 'Inscription envoyée avec succès' });
+      setStatus({ type: 'success', message: t('inscription.successMessage') });
       setFormData({
         name: '',
         email: '',
@@ -56,12 +62,18 @@ const Inscription = () => {
         message: ''
       });
     } catch (error) {
-      const errorMsg = error.response?.data?.message || 'Une erreur est survenue. Veuillez réessayer.';
+      const errorMsg = error.response?.data?.message || t('inscription.errorMessage');
       setStatus({ type: 'error', message: errorMsg });
     } finally {
       setLoading(false);
     }
   };
+
+  const steps = [
+    { num: t('inscription.step1Num'), icon: 'edit_note', title: t('inscription.step1Title'), desc: t('inscription.step1Desc') },
+    { num: t('inscription.step2Num'), icon: 'assignment_turned_in', title: t('inscription.step2Title'), desc: t('inscription.step2Desc') },
+    { num: t('inscription.step3Num'), icon: 'school', title: t('inscription.step3Title'), desc: t('inscription.step3Desc') }
+  ];
 
   return (
     <div className="bg-surface min-h-screen">
@@ -77,10 +89,12 @@ const Inscription = () => {
         </div>
         <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-16">
           <div className="md:w-1/2 space-y-4 md:space-y-6">
-            <span className="bg-tertiary-container text-on-tertiary-container px-3 py-1 text-[10px] md:text-xs font-bold uppercase tracking-widest rounded">Inscriptions 2026-2027</span>
-            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">Votre Carrière <span className="text-tertiary-fixed">Commence Ici</span></h1>
+            <span className="bg-tertiary-container text-on-tertiary-container px-3 py-1 text-[10px] md:text-xs font-bold uppercase tracking-widest rounded">{t('inscription.badge')}</span>
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">
+              {t('inscription.heroTitle')} <span className="text-tertiary-fixed">{t('inscription.heroTitleHighlight')}</span>
+            </h1>
             <p className="text-sm sm:text-base max-w-lg opacity-90">
-              Rejoignez le premier institut technologique du Maroc. Notre processus d'admission transparent est conçu pour trouver les innovateurs de demain.
+              {t('inscription.heroSubtitle')}
             </p>
           </div>
           <div className="md:w-1/2">
@@ -109,7 +123,7 @@ const Inscription = () => {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-10 md:mb-16">
-            <h2 className="font-headline-lg text-primary">Parcours d'Admission</h2>
+            <h2 className="font-headline-lg text-primary">{t('inscription.processTitle')}</h2>
             <div className="w-24 h-1 bg-tertiary mx-auto mt-4"></div>
           </div>
           <motion.div
@@ -119,11 +133,7 @@ const Inscription = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
           >
-            {[
-              { num: '01', icon: 'edit_note', title: 'Candidature', desc: 'Remplissez notre formulaire en ligne avec vos informations personnelles et votre programme d\'études préféré.' },
-              { num: '02', icon: 'assignment_turned_in', title: 'Évaluation', desc: 'Participez à une évaluation technique et un entretien avec notre conseil académique.' },
-              { num: '03', icon: 'school', title: 'Inscription', desc: 'Finalisez votre inscription en soumettant les documents requis et les frais d\'inscription.' }
-            ].map((step, index) => (
+            {steps.map((step, index) => (
               <motion.div key={index} className="relative z-10 flex flex-col items-center text-center px-4 group" variants={fadeUp}>
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg transition-all duration-300 ${index === 2 ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-primary text-white group-hover:bg-secondary'}`}>
                   <span className="material-symbols-outlined text-3xl">{step.icon}</span>
@@ -149,13 +159,13 @@ const Inscription = () => {
           <div className="flex flex-col lg:flex-row bg-white rounded-3xl overflow-hidden shadow-2xl border border-outline-variant">
             {/* Left: Info */}
             <div className="lg:w-1/3 bg-primary p-8 md:p-12 text-white">
-              <h2 className="font-headline-md mb-6 uppercase tracking-tight">Prêt à commencer ?</h2>
-              <p className="opacity-80 mb-12 text-sm leading-relaxed">Remplissez ce formulaire et notre équipe d'admission vous contactera dans les 24 heures pour planifier votre entretien.</p>
+              <h2 className="font-headline-md mb-6 uppercase tracking-tight">{t('inscription.readyTitle')}</h2>
+              <p className="opacity-80 mb-12 text-sm leading-relaxed">{t('inscription.readyDesc')}</p>
               <div className="space-y-8">
                 <div className="flex gap-6">
                   <span className="material-symbols-outlined text-tertiary-fixed text-3xl">support_agent</span>
                   <div>
-                    <p className="font-bold uppercase text-[10px] tracking-widest opacity-60">Lignes d'Assistance</p>
+                    <p className="font-bold uppercase text-[10px] tracking-widest opacity-60">{t('inscription.helpline')}</p>
                     <p className="text-lg font-black text-tertiary-fixed">05 39 93 95 37</p>
                     <p className="text-lg font-black text-tertiary-fixed">06 68 43 48 95</p>
                   </div>
@@ -163,7 +173,7 @@ const Inscription = () => {
                 <div className="flex gap-6">
                   <span className="material-symbols-outlined text-tertiary-fixed text-3xl">mail</span>
                   <div>
-                    <p className="font-bold uppercase text-[10px] tracking-widest opacity-60">E-mail Admissions</p>
+                    <p className="font-bold uppercase text-[10px] tracking-widest opacity-60">{t('inscription.admissionsEmail')}</p>
                     <p className="text-sm font-medium">instituttrans@gmail.com</p>
                   </div>
                 </div>
@@ -179,43 +189,43 @@ const Inscription = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">Nom Complet</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.fullName')}</label>
                     <input 
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
                       className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none" 
-                      placeholder="ex: Adam Smith" 
+                      placeholder={t('inscription.fullNamePlaceholder')} 
                       type="text"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">Adresse E-mail</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.emailAddress')}</label>
                     <input 
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
                       className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none" 
-                      placeholder="adam@exemple.com" 
+                      placeholder={t('inscription.emailPlaceholder')} 
                       type="email"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">Numéro de Téléphone</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.phoneNumber')}</label>
                     <input 
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
                       required
                       className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none" 
-                      placeholder="+212 6..." 
+                      placeholder={t('inscription.phonePlaceholder')} 
                       type="tel"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">Programme d'Intérêt</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.programOfInterest')}</label>
                     <select 
                       name="formation_id"
                       value={formData.formation_id}
@@ -223,21 +233,21 @@ const Inscription = () => {
                       required
                       className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none appearance-none"
                     >
-                      <option value="">Sélectionnez un programme</option>
+                      <option value="">{t('inscription.selectProgram')}</option>
                       {formations.map(f => (
-                        <option key={f.id} value={f.id}>{f.title}</option>
+                        <option key={f.id} value={f.id}>{getLocalized(f.title, currentLang)}</option>
                       ))}
                     </select>
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-primary uppercase tracking-widest block">Message (Optionnel)</label>
+                  <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.optionalMessage')}</label>
                   <textarea 
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none" 
-                    placeholder="Des questions spécifiques ou des détails sur votre parcours..." 
+                    placeholder={t('inscription.messagePlaceholder')} 
                     rows="4"
                   ></textarea>
                 </div>
@@ -248,10 +258,10 @@ const Inscription = () => {
                       className="w-full bg-secondary text-white font-black py-5 rounded-2xl shadow-xl hover:brightness-110 active:scale-95 transition-all uppercase tracking-widest disabled:opacity-50" 
                       type="submit"
                     >
-                      {loading ? 'Envoi en cours...' : 'Soumettre la candidature'}
+                      {loading ? t('inscription.sending') : t('inscription.submitApplication')}
                     </motion.button>
                   </MagneticHover>
-                  <p className="text-center text-[10px] text-on-surface-variant mt-6 uppercase tracking-widest opacity-60">En soumettant ce formulaire, vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité.</p>
+                  <p className="text-center text-[10px] text-on-surface-variant mt-6 uppercase tracking-widest opacity-60">{t('inscription.privacyNotice')}</p>
                 </div>
               </form>
             </div>
