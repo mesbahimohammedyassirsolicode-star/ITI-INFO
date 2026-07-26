@@ -76,7 +76,7 @@ const Inscription = () => {
   ];
 
   return (
-    <div className="bg-surface min-h-screen">
+    <div className="bg-surface min-h-screen dark:bg-slate-900">
       {/* Hero Header */}
       <motion.header
         className="relative bg-primary py-12 md:py-24 overflow-hidden"
@@ -93,7 +93,7 @@ const Inscription = () => {
             <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">
               {t('inscription.heroTitle')} <span className="text-tertiary-fixed">{t('inscription.heroTitleHighlight')}</span>
             </h1>
-            <p className="text-sm sm:text-base max-w-lg opacity-90">
+            <p className="text-sm sm:text-base max-w-lg text-white/90">
               {t('inscription.heroSubtitle')}
             </p>
           </div>
@@ -115,7 +115,7 @@ const Inscription = () => {
 
       {/* Process Stepper */}
       <motion.section
-        className="py-12 md:py-20 bg-surface-container-lowest"
+        className="py-12 md:py-20 bg-surface-container-lowest dark:bg-slate-900"
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
@@ -123,7 +123,7 @@ const Inscription = () => {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-10 md:mb-16">
-            <h2 className="font-headline-lg text-primary">{t('inscription.processTitle')}</h2>
+            <h2 className="font-headline-lg text-primary dark:text-white">{t('inscription.processTitle')}</h2>
             <div className="w-24 h-1 bg-tertiary mx-auto mt-4"></div>
           </div>
           <motion.div
@@ -138,8 +138,8 @@ const Inscription = () => {
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg transition-all duration-300 ${index === 2 ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-primary text-white group-hover:bg-secondary'}`}>
                   <span className="material-symbols-outlined text-3xl">{step.icon}</span>
                 </div>
-                <h3 className="font-headline-md text-primary mb-2 uppercase text-sm tracking-widest">{step.num}. {step.title}</h3>
-                <p className="text-on-surface-variant text-sm">{step.desc}</p>
+                <h3 className="font-headline-md text-primary mb-2 uppercase text-sm tracking-widest dark:text-white">{step.num}. {step.title}</h3>
+                <p className="text-slate-600 text-sm dark:text-slate-300">{step.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -148,7 +148,7 @@ const Inscription = () => {
 
       {/* Application Form */}
       <motion.section
-        className="py-12 md:py-20 bg-surface-container-low"
+        className="py-12 md:py-20 bg-surface-container-low dark:bg-slate-800"
         id="form"
         variants={fadeUp}
         initial="hidden"
@@ -156,7 +156,7 @@ const Inscription = () => {
         viewport={{ once: true, amount: 0.1 }}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="flex flex-col lg:flex-row bg-white rounded-3xl overflow-hidden shadow-2xl border border-outline-variant">
+          <div className="flex flex-col lg:flex-row bg-white rounded-3xl overflow-hidden shadow-2xl border border-outline-variant dark:bg-slate-900 dark:border-slate-700">
             {/* Left: Info */}
             <div className="lg:w-1/3 bg-primary p-8 md:p-12 text-white">
               <h2 className="font-headline-md mb-6 uppercase tracking-tight">{t('inscription.readyTitle')}</h2>
@@ -165,7 +165,7 @@ const Inscription = () => {
                 <div className="flex gap-6">
                   <span className="material-symbols-outlined text-tertiary-fixed text-3xl">support_agent</span>
                   <div>
-                    <p className="font-bold uppercase text-[10px] tracking-widest opacity-60">{t('inscription.helpline')}</p>
+                    <p className="font-bold uppercase text-[10px] tracking-widest text-white/70">{t('inscription.helpline')}</p>
                     <p className="text-lg font-black text-tertiary-fixed">05 39 93 95 37</p>
                     <p className="text-lg font-black text-tertiary-fixed">06 68 43 48 95</p>
                   </div>
@@ -173,7 +173,7 @@ const Inscription = () => {
                 <div className="flex gap-6">
                   <span className="material-symbols-outlined text-tertiary-fixed text-3xl">mail</span>
                   <div>
-                    <p className="font-bold uppercase text-[10px] tracking-widest opacity-60">{t('inscription.admissionsEmail')}</p>
+                    <p className="font-bold uppercase text-[10px] tracking-widest text-white/70">{t('inscription.admissionsEmail')}</p>
                     <p className="text-sm font-medium">instituttrans@gmail.com</p>
                   </div>
                 </div>
@@ -182,56 +182,56 @@ const Inscription = () => {
             {/* Right: Form */}
             <div className="lg:w-2/3 p-6 md:p-12">
               {status.message && (
-                <div className={`mb-8 p-4 rounded-xl text-sm font-bold uppercase tracking-widest ${status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                <div className={`mb-8 p-4 rounded-xl text-sm font-bold uppercase tracking-widest ${status.type === 'success' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'}`}>
                   {status.message}
                 </div>
               )}
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.fullName')}</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block dark:text-slate-100">{t('inscription.fullName')}</label>
                     <input 
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none" 
+                      className="w-full bg-white border border-slate-200 rounded-xl p-4 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-500" 
                       placeholder={t('inscription.fullNamePlaceholder')} 
                       type="text"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.emailAddress')}</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block dark:text-slate-100">{t('inscription.emailAddress')}</label>
                     <input 
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none" 
+                      className="w-full bg-white border border-slate-200 rounded-xl p-4 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-500" 
                       placeholder={t('inscription.emailPlaceholder')} 
                       type="email"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.phoneNumber')}</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block dark:text-slate-100">{t('inscription.phoneNumber')}</label>
                     <input 
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none" 
+                      className="w-full bg-white border border-slate-200 rounded-xl p-4 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-500" 
                       placeholder={t('inscription.phonePlaceholder')} 
                       type="tel"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.programOfInterest')}</label>
+                    <label className="text-xs font-black text-primary uppercase tracking-widest block dark:text-slate-100">{t('inscription.programOfInterest')}</label>
                     <select 
                       name="formation_id"
                       value={formData.formation_id}
                       onChange={handleChange}
                       required
-                      className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none appearance-none"
+                      className="w-full bg-white border border-slate-200 rounded-xl p-4 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none appearance-none dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100"
                     >
                       <option value="">{t('inscription.selectProgram')}</option>
                       {formations.map(f => (
@@ -241,12 +241,12 @@ const Inscription = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-primary uppercase tracking-widest block">{t('inscription.optionalMessage')}</label>
+                  <label className="text-xs font-black text-primary uppercase tracking-widest block dark:text-slate-100">{t('inscription.optionalMessage')}</label>
                   <textarea 
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-surface-container border-none rounded-xl p-4 focus:ring-2 focus:ring-primary outline-none" 
+                    className="w-full bg-white border border-slate-200 rounded-xl p-4 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-500" 
                     placeholder={t('inscription.messagePlaceholder')} 
                     rows="4"
                   ></textarea>
@@ -261,7 +261,7 @@ const Inscription = () => {
                       {loading ? t('inscription.sending') : t('inscription.submitApplication')}
                     </motion.button>
                   </MagneticHover>
-                  <p className="text-center text-[10px] text-on-surface-variant mt-6 uppercase tracking-widest opacity-60">{t('inscription.privacyNotice')}</p>
+                  <p className="text-center text-[10px] text-slate-500 mt-6 uppercase tracking-widest dark:text-slate-400">{t('inscription.privacyNotice')}</p>
                 </div>
               </form>
             </div>

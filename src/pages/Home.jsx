@@ -101,7 +101,7 @@ const Home = () => {
                 viewport={{ once: true, amount: 0.25 }}
               />
               <div className="absolute -bottom-6 -right-6 glass-card p-6 rounded-xl shadow-lg border-l-4 border-secondary">
-                <p className="text-secondary font-headline-xl mb-0"><AnimatedCounter value={38} suffix="+" /></p>
+                <p className="text-secondary font-headline-xl mb-0"><AnimatedCounter value={40} suffix="+" /></p>
                 <p className="text-on-surface-variant font-label-md uppercase tracking-widest text-[10px]">{t('home.about.yearsLabel')}</p>
               </div>
             </div>
